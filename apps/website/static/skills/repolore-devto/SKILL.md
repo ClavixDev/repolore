@@ -29,7 +29,7 @@ Write a "show dev.to" post about the new feature
 3. **Generate article** - Creates dev.to formatted content
 4. **Include frontmatter** - Adds dev.to specific frontmatter
 5. **Present for review**
-6. **Save to file**
+6. **Save to file** - Writes to `.repolore/devto/repolore-devto-YYYMMDD-HHMMSS.md`
 
 ## Output Format
 
@@ -135,9 +135,17 @@ When the user asks for a dev.to article:
    - Code examples from diff
    - Discussion prompt
 
-6. **Save to file** (default: `devto-article.md`)
+6. **Ensure `.repolore/devto` directory exists and is gitignored** using Bash:
+   ```bash
+   mkdir -p .repolore/devto
+   echo ".repolore/" >> .gitignore 2>/dev/null || true
+   ```
 
-7. **Remind user** to:
+7. **Generate unique ID** for filename (timestamp-based: YYYMMDD-HHMMSS)
+
+8. **Save to file** using Write tool: `.repolore/devto/repolore-devto-{timestamp}.md`
+
+9. **Remind user** to:
    - Change `published: false` to `published: true` when ready
    - Add a cover image URL
    - Set canonical_url if cross-posting

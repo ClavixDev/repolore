@@ -28,7 +28,7 @@ What would the changelog look like for changes since v1.0?
 2. **Categorize changes** - Groups into Added/Changed/Fixed/Removed/Deprecated/Security
 3. **Generate entry** - Creates Keep a Changelog format
 4. **Present for review**
-5. **Append to CHANGELOG.md** or save to file
+5. **Append to CHANGELOG.md** or save to file (`.repolore/changelog/repolore-changelog-YYYMMDD-HHMMSS.md`)
 
 ## Output Format
 
@@ -144,7 +144,16 @@ When the user asks for a changelog entry:
 
 7. **Ask user**:
    - Append to CHANGELOG.md
-   - Save to new file
+   - Save to new file in `.repolore/changelog/`
    - Copy to clipboard
 
-8. **If appending**, read existing CHANGELOG.md first, then write updated version
+8. **If saving to file**:
+   - Ensure `.repolore/changelog` directory exists and is gitignored:
+     ```bash
+     mkdir -p .repolore/changelog
+     echo ".repolore/" >> .gitignore 2>/dev/null || true
+     ```
+   - Generate unique ID for filename (timestamp-based: YYYMMDD-HHMMSS)
+   - Save to file using Write tool: `.repolore/changelog/repolore-changelog-{timestamp}.md`
+
+9. **If appending**, read existing CHANGELOG.md first, then write updated version

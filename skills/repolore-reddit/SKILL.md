@@ -29,6 +29,7 @@ Write a Reddit post asking for feedback on my new CLI design
 3. **Generate post** - Creates Reddit-formatted content
 4. **Suggest subreddit** - Recommends appropriate subreddit
 5. **Present for review**
+6. **Save to file** (`.repolore/reddit/repolore-reddit-YYYMMDD-HHMMSS.md`)
 
 ## Output Format
 
@@ -59,6 +60,7 @@ subreddits:
 
 - `Bash` - For git operations
 - `Read` - For REPOLORE.md context
+- `Write` - For saving files to .repolore/
 
 ---
 
@@ -116,3 +118,12 @@ When the user asks for a Reddit post:
    - Technical body with discussion value
 
 5. **Present for review** and ask if they want to save to file
+
+6. **If saving to file**:
+   - Ensure `.repolore/reddit` directory exists and is gitignored:
+     ```bash
+     mkdir -p .repolore/reddit
+     echo ".repolore/" >> .gitignore 2>/dev/null || true
+     ```
+   - Generate unique ID for filename (timestamp-based: YYYMMDD-HHMMSS)
+   - Save to file using Write tool: `.repolore/reddit/repolore-reddit-{timestamp}.md`

@@ -28,7 +28,7 @@ Write about shipping v1.0
 2. **Read context** - Loads REPOLORE.md if present
 3. **Generate post** - Creates LinkedIn-formatted content
 4. **Present for review** - Shows character count
-5. **Save or copy**
+5. **Save or copy** (save to `.repolore/linkedin/repolore-linkedin-YYYMMDD-HHMMSS.md`)
 
 ## Output Format
 
@@ -64,6 +64,7 @@ audience: developers
 
 - `Bash` - For git operations
 - `Read` - For REPOLORE.md context
+- `Write` - For saving files to .repolore/
 
 ---
 
@@ -112,4 +113,15 @@ When the user asks for a LinkedIn post:
 
 5. **Show character count** (target: 1000-1300)
 
-6. **Ask user** to save to file or regenerate
+6. **Ask user**:
+   - Save to file in `.repolore/linkedin/`
+   - Regenerate with different angle
+
+7. **If saving to file**:
+   - Ensure `.repolore/linkedin` directory exists and is gitignored:
+     ```bash
+     mkdir -p .repolore/linkedin
+     echo ".repolore/" >> .gitignore 2>/dev/null || true
+     ```
+   - Generate unique ID for filename (timestamp-based: YYYMMDD-HHMMSS)
+   - Save to file using Write tool: `.repolore/linkedin/repolore-linkedin-{timestamp}.md`

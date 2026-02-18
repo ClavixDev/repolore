@@ -28,7 +28,7 @@ Write a "behind the code" newsletter about recent changes
 2. **Read context** - Loads REPOLORE.md if present
 3. **Generate content** - Creates newsletter with subject, preview, and body
 4. **Present for review**
-5. **Save to file**
+5. **Save to file** - Writes to `.repolore/newsletter/repolore-newsletter-YYYMMDD-HHMMSS.md`
 
 ## Output Format
 
@@ -129,4 +129,12 @@ When the user asks for a newsletter:
 
 6. **Present for review**
 
-7. **Save to file** (default: `newsletter.md`)
+7. **Ensure `.repolore/newsletter` directory exists and is gitignored** using Bash:
+   ```bash
+   mkdir -p .repolore/newsletter
+   echo ".repolore/" >> .gitignore 2>/dev/null || true
+   ```
+
+8. **Generate unique ID** for filename (timestamp-based: YYYMMDD-HHMMSS)
+
+9. **Save to file** using Write tool: `.repolore/newsletter/repolore-newsletter-{timestamp}.md`

@@ -28,7 +28,7 @@ Tweet about the new auth system I just shipped
 2. **Read context** - Loads REPOLORE.md if present
 3. **Generate content** - Creates tweet or thread
 4. **Present for review** - Shows character count
-5. **Copy to clipboard** or save to file
+5. **Copy to clipboard** or save to file (`.repolore/x/repolore-x-YYYMMDD-HHMMSS.txt`)
 
 ## Output Format
 
@@ -61,6 +61,7 @@ twitter_handle: "@myhandle"
 
 - `Bash` - For git operations
 - `Read` - For REPOLORE.md context
+- `Write` - For saving files to .repolore/
 
 ---
 
@@ -114,5 +115,14 @@ When the user asks for a tweet:
 
 6. **Ask user**:
    - Copy to clipboard (they can do this manually)
-   - Save to file (e.g., `tweet.txt`)
+   - Save to file in `.repolore/x/`
    - Regenerate with different angle
+
+7. **If saving to file**:
+   - Ensure `.repolore/x` directory exists and is gitignored:
+     ```bash
+     mkdir -p .repolore/x
+     echo ".repolore/" >> .gitignore 2>/dev/null || true
+     ```
+   - Generate unique ID for filename (timestamp-based: YYYMMDD-HHMMSS)
+   - Save to file using Write tool: `.repolore/x/repolore-x-{timestamp}.txt`

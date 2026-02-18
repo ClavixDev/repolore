@@ -28,7 +28,7 @@ Write a blog post about the auth improvements from my recent commits
 2. **Read context** - Loads REPOLORE.md if present for project context
 3. **Generate outline** - Presents a structured outline for approval
 4. **Write blog post** - Generates full blog post with frontmatter
-5. **Save to file** - Writes to `blog-post.md` (or your preferred filename)
+5. **Save to file** - Writes to `.repolore/blog/repolore-blogpost-YYYMMDD-HHMMSS.md`
 
 ## Output Format
 
@@ -150,6 +150,14 @@ When the user asks to analyze commits and write a blog post:
    - Code examples from the diff
    - SEO optimization
 
-8. **Save to file** using Write tool (default: `blog-post.md`)
+8. **Ensure `.repolore/blog` directory exists and is gitignored** using Bash:
+   ```bash
+   mkdir -p .repolore/blog
+   echo ".repolore/" >> .gitignore 2>/dev/null || true
+   ```
 
-9. **Confirm completion** with file path
+9. **Generate unique ID** for filename (timestamp-based: YYYMMDD-HHMMSS)
+
+10. **Save to file** using Write tool: `.repolore/blog/repolore-blogpost-{timestamp}.md`
+
+11. **Confirm completion** with file path
