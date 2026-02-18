@@ -7,8 +7,7 @@
   const navItems = [
     { href: '/', label: 'HOME' },
     { href: '/#features', label: 'FEATURES' },
-    { href: '/pricing', label: 'PRICING' },
-    { href: '/contact', label: 'CONTACT' }
+    { href: '/contact', label: 'COMMUNITY' }
   ];
 
   $effect(() => {
@@ -47,16 +46,10 @@
     <!-- CTA -->
     <div class="flex items-center gap-4">
       <a
-        href="/login"
+        href="https://github.com/ClavixDev/repolore"
         class="text-sm font-mono text-fg-muted hover:text-neon-cyan transition-colors"
       >
-        // LOGIN
-      </a>
-      <a
-        href="/pricing"
-        class="px-4 py-2 border-2 border-neon-green text-neon-green font-mono text-sm uppercase tracking-wider chamfer-sm hover:bg-neon-green hover:text-void transition-all duration-150 neon-glow"
-      >
-        Get Started
+        // GITHUB
       </a>
     </div>
   </nav>

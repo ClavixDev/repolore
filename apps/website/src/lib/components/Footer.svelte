@@ -1,18 +1,16 @@
 <script lang="ts">
   const links = {
     product: [
-      { href: '/#features', label: '// FEATURES' },
-      { href: '/pricing', label: '// PRICING' },
-      { href: '/why-us', label: '// WHY_US' }
+      { href: '/#features', label: '// FEATURES' }
     ],
-    company: [
-      { href: '/contact', label: '// CONTACT' },
+    community: [
+      { href: '/contact', label: '// COMMUNITY' },
+      { href: 'https://github.com/ClavixDev/repolore', label: '> GITHUB' },
+      { href: 'https://github.com/ClavixDev/repolore/discussions', label: '> DISCUSSIONS' }
+    ],
+    legal: [
       { href: '/privacy', label: '// PRIVACY' },
       { href: '/terms', label: '// TERMS' }
-    ],
-    social: [
-      { href: 'https://github.com', label: '> GITHUB' },
-      { href: 'https://twitter.com', label: '> TWITTER' }
     ]
   };
 </script>

@@ -11,8 +11,8 @@
 </script>
 
 <svelte:head>
-  <title>RepoLore // AI-POWERED CONTENT</title>
-  <meta name="description" content="Transform your PRs and commits into compelling blog posts, changelogs, and social content" />
+  <title>RepoLore // Open Source SEO Skills</title>
+  <meta name="description" content="Open-source SEO content generation skills for AI agents. Transform PRs and commits into compelling content." />
 </svelte:head>
 
 <section class="min-h-screen flex items-center justify-center pt-32 relative overflow-hidden cyber-grid">
@@ -32,35 +32,35 @@
       <div in:fly={{ y: 30, duration: 800, delay: 0 }}>
         <span class="inline-flex items-center gap-2 px-4 py-2 border border-neon-green/30 text-neon-green text-sm font-mono mb-8 chamfer">
           <span class="w-2 h-2 rounded-full bg-neon-green animate-pulse"></span>
-          > SYSTEM_READY // AI_CONTENT_GEN_V2.0
+          > OPEN_SOURCE // SEO_SKILLS_V2.0
         </span>
       </div>
 
       <div in:fly={{ y: 30, duration: 800, delay: 150 }}>
         <h1 class="text-5xl md:text-7xl lg:text-8xl font-black font-display uppercase tracking-widest mb-6 leading-tight">
-          <span class="text-fg-primary" data-text="TRANSFORM_CODE">TRANSFORM_CODE</span><br>
+          <span class="text-fg-primary" data-text="SEO_CONTENT">SEO_CONTENT</span><br>
           <span
             class="text-neon-green text-glow glitch"
-            data-text="INTO_STORIES"
+            data-text="FOR_AGENTS"
           >
-            INTO_STORIES
+            FOR_AGENTS
           </span>
         </h1>
       </div>
 
       <div in:fly={{ y: 30, duration: 800, delay: 300 }}>
         <p class="text-xl text-fg-muted max-w-2xl mx-auto mb-10 font-mono">
-          <span class="text-neon-cyan">></span> RepoLore automatically generates blog posts, changelogs, and social content from your GitHub PRs and commits.
+          <span class="text-neon-cyan">></span> Open-source SEO content generation skills for AI agents. Transform PRs and commits into compelling blog posts, changelogs, and social content.
           <span class="text-neon-green cursor-blink"></span>
         </p>
       </div>
 
       <div in:fly={{ y: 30, duration: 800, delay: 450 }} class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href="/pricing"
+          href="https://github.com/ClavixDev/repolore"
           class="px-8 py-4 bg-neon-green text-void font-bold font-mono uppercase tracking-wider chamfer hover:brightness-110 transition-all hover:scale-105 neon-glow"
         >
-          Initialize_Trial
+          View_on_GitHub
         </a>
         <a
           href="/#features"
@@ -73,15 +73,15 @@
       <div in:fly={{ y: 30, duration: 800, delay: 600 }} class="mt-20 flex flex-wrap items-center justify-center gap-8 text-fg-muted text-sm font-mono">
         <span class="flex items-center gap-2">
           <span class="text-neon-green">✓</span>
-          NO_CREDIT_CARD_REQUIRED
+          100%_OPEN_SOURCE
         </span>
         <span class="flex items-center gap-2">
           <span class="text-neon-green">✓</span>
-          14_DAY_FREE_TRIAL
+          FREE_FOREVER
         </span>
         <span class="flex items-center gap-2">
           <span class="text-neon-green">✓</span>
-          CANCEL_ANYTIME
+          SELF_HOSTED
         </span>
       </div>
     {/if}
