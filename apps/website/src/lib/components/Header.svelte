@@ -21,12 +21,7 @@
 </script>
 
 <header
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b"
-  class:bg-bg-card={scrolled}
-  class:bg-void/80={!scrolled}
-  class:border-neon-green/30={scrolled}
-  class:border-transparent={!scrolled}
-  class:backdrop-blur-md={scrolled}
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b {scrolled ? 'bg-bg-card border-neon-green/30 backdrop-blur-md' : 'bg-void/80 border-transparent'}"
 >
   <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
