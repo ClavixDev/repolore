@@ -169,7 +169,7 @@
         </a>
       </div>
 
-      <div in:fly={{ y: 30, duration: 800, delay: 600 }} class="mt-20 flex flex-wrap items-center justify-center gap-8 text-fg-muted text-sm font-mono">
+      <div in:fly={{ y: 30, duration: 800, delay: 600 }} class="mt-20 pb-12 sm:pb-0 flex flex-wrap items-center justify-center gap-8 text-fg-muted text-sm font-mono">
         <span class="flex items-center gap-2">
           <span class="text-neon-green">✓</span>
           100%_OPEN_SOURCE
