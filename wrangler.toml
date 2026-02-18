@@ -1,0 +1,9 @@
+name = "repolore"
+compatibility_date = "2024-02-18"
+
+[build]
+command = "cd apps/website && pnpm build"
+
+# The output directory is relative to the repo root
+# Since the build runs in apps/website, the adapter outputs to apps/website/.svelte-kit/cloudflare
+pages_build_output_dir = "apps/website/.svelte-kit/cloudflare"
