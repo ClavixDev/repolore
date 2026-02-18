@@ -22,7 +22,7 @@
 <section class="relative overflow-hidden bg-slate-900 px-6 py-24 sm:py-32">
   <div class="mx-auto max-w-5xl text-center">
     <div class="mb-8 inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-4 py-1.5 text-sm font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
-      <span>Claude Code Skills</span>
+      <span>Agentic Skills</span>
     </div>
 
     <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
@@ -31,7 +31,7 @@
     </h1>
 
     <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-      Repolore is a collection of Claude Code skills that transform your git history
+      Repolore is a collection of Agentic skills that transform your git history
       into blog posts, tweets, LinkedIn updates, changelogs, and more.
     </p>
 
@@ -74,7 +74,7 @@
       <div class="relative rounded-2xl bg-slate-50 p-8">
         <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 text-xl font-bold text-white">1</div>
         <h3 class="text-lg font-semibold text-slate-900">Install the Skill</h3>
-        <p class="mt-2 text-slate-600">One command installs any Repolore skill directly into your Claude Code environment.</p>
+        <p class="mt-2 text-slate-600">One command installs any Repolore skill directly into your agentic environment.</p>
         <div class="mt-4 rounded-lg bg-slate-900 p-3 font-mono text-xs text-slate-300">
           /load skill repolore-blog
         </div>
@@ -208,7 +208,7 @@ Our users were seeing 502 errors during deployments...
       </div>
     </div>
     <div class="mt-8 text-center text-sm text-slate-500">
-      Open source under MIT License. Built for Claude Code.
+      Open source under MIT License. Built for Agentic workflows.
     </div>
   </div>
 </footer>

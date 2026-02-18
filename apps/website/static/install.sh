@@ -130,7 +130,7 @@ main() {
     echo ""
     echo -e "${GREEN}✓ Installed ${installed} skill(s) to ${SKILLS_DIR}${NC}"
     echo ""
-    echo "Usage in Claude Code:"
+    echo "Usage:"
     echo "  /load skill repolore-blog"
     echo ""
     echo "Or install with template:"

@@ -2,7 +2,7 @@
 
 > Git Commits to Content
 
-Repolore is a collection of [Claude Code](https://claude.ai/code) skills that transform your git history into blog posts, tweets, LinkedIn updates, changelogs, and more.
+Repolore is a collection of [Agentic skills](https://agentskills.io) that transform your git history into blog posts, tweets, LinkedIn updates, changelogs, and more.
 
 ## Quick Start
 

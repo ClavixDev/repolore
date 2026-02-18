@@ -2,7 +2,7 @@
   "name": "repolore",
   "private": true,
   "version": "1.0.0",
-  "description": "Claude Code skills that transform git commits into content",
+  "description": "Agentic skills that transform git commits into content",
   "packageManager": "pnpm@9.15.0",
   "engines": {
     "node": ">=20"
@@ -16,7 +16,8 @@
     "prettier": "^3.4.2"
   },
   "keywords": [
-    "claude-code",
+    "agentic",
+    "agentskills",
     "skills",
     "git",
     "content-generation",

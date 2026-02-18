@@ -31,7 +31,7 @@ A clear and concise description of what you expected to happen.
 
 **Environment:**
  - OS: [e.g. macOS, Linux, Windows]
- - Claude Code version: [e.g. 0.32.0]
+ - Agentic tool version: [e.g. Claude Code 0.32.0, Cursor 0.45.0]
 
 **Additional context**
 Add any other context about the problem here.

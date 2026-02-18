@@ -1,6 +1,6 @@
 # Contributing to Repolore
 
-Thanks for your interest in contributing! Repolore is a collection of Claude Code skills that help developers create content from their git commits.
+Thanks for your interest in contributing! Repolore is a collection of Agentic skills that help developers create content from their git commits.
 
 ## How to Contribute
 
@@ -9,7 +9,7 @@ Thanks for your interest in contributing! Repolore is a collection of Claude Cod
 - Use the [issue tracker](https://github.com/yourusername/repolore/issues)
 - Check if the issue already exists before creating a new one
 - Provide clear reproduction steps
-- Include your OS and Claude Code version
+- Include your OS and agentic tool version
 
 ### Suggesting Features
 
@@ -84,7 +84,7 @@ Describe what the skill generates.
 
 1. Fork the repository
 2. Make your changes to the relevant SKILL.md
-3. Test the skill in Claude Code
+3. Test the skill in your agentic environment
 4. Submit a pull request with a clear description
 
 ### Website Contributions
