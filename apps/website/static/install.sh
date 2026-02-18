@@ -3,11 +3,14 @@
 # Repolore Skill Installer
 # Usage: curl -fsSL repolore.com/install | bash
 #        curl -fsSL repolore.com/install | bash -s -- blog x linkedin
+#        curl -fsSL repolore.com/install | bash -s -- --dir ~/.config/agents/skills
 #
 
 set -e
 
-SKILLS_DIR="${HOME}/.claude/skills"
+# Default skills directory (Claude Code)
+DEFAULT_SKILLS_DIR="${HOME}/.claude/skills"
+SKILLS_DIR="${DEFAULT_SKILLS_DIR}"
 REPOLORE_URL="https://repolore.com"
 
 # Colors
@@ -43,8 +46,12 @@ print_banner() {
 
 print_usage() {
     echo "Usage:"
-    echo "  curl -fsSL repolore.com/install | bash           # Install all skills"
-    echo "  curl -fsSL repolore.com/install | bash -s -- blog x    # Install specific skills"
+    echo "  curl -fsSL repolore.com/install | bash                              # Install all skills to ~/.claude/skills"
+    echo "  curl -fsSL repolore.com/install | bash -s -- blog x                  # Install specific skills"
+    echo "  curl -fsSL repolore.com/install | bash -s -- --dir ~/.config/agents/skills  # Custom directory"
+    echo ""
+    echo "Options:"
+    echo "  -d, --dir <path>    Install skills to custom directory"
     echo ""
     echo "Available skills:"
     for skill in "${ALL_SKILLS[@]}"; do
@@ -74,19 +81,42 @@ install_skill() {
 main() {
     print_banner
 
-    # Create skills directory
-    mkdir -p "${SKILLS_DIR}"
-
     # Determine which skills to install
     local skills_to_install=()
 
-    if [ $# -eq 0 ]; then
+    # Parse arguments
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -d|--dir)
+                if [[ -n "$2" ]]; then
+                    SKILLS_DIR="$2"
+                    shift 2
+                else
+                    echo -e "${RED}Error: --dir requires a path argument${NC}"
+                    print_usage
+                    exit 1
+                fi
+                ;;
+            *)
+                # It's a skill name
+                skills_to_install+=("$1")
+                shift
+                ;;
+        esac
+    done
+
+    # Create skills directory
+    mkdir -p "${SKILLS_DIR}"
+
+    # If no skills specified, install all
+    if [ ${#skills_to_install[@]} -eq 0 ]; then
         # Install all skills
         skills_to_install=("${ALL_SKILLS[@]}")
         echo -e "${YELLOW}Installing all Repolore skills...${NC}"
     else
         # Install specific skills
-        for arg in "$@"; do
+        local valid_skills=()
+        for arg in "${skills_to_install[@]}"; do
             # Normalize skill name (add repolore- prefix if not present)
             if [[ "${arg}" != repolore-* ]]; then
                 arg="repolore-${arg}"
@@ -102,11 +132,12 @@ main() {
             done
 
             if [ "${found}" = true ]; then
-                skills_to_install+=("${arg}")
+                valid_skills+=("${arg}")
             else
                 echo -e "${YELLOW}Warning: Unknown skill '${arg}' - skipping${NC}"
             fi
         done
+        skills_to_install=("${valid_skills[@]}")
     fi
 
     if [ ${#skills_to_install[@]} -eq 0 ]; then
@@ -116,7 +147,12 @@ main() {
     fi
 
     echo ""
-    echo "Installing ${#skills_to_install[@]} skill(s)..."
+    if [ "${SKILLS_DIR}" = "${DEFAULT_SKILLS_DIR}" ]; then
+        echo "Installing ${#skills_to_install[@]} skill(s) to ${SKILLS_DIR}"
+    else
+        echo -e "${YELLOW}Installing ${#skills_to_install[@]} skill(s) to custom directory:${NC}"
+        echo "  ${SKILLS_DIR}"
+    fi
     echo ""
 
     # Install each skill
@@ -130,11 +166,15 @@ main() {
     echo ""
     echo -e "${GREEN}✓ Installed ${installed} skill(s) to ${SKILLS_DIR}${NC}"
     echo ""
-    echo "Usage:"
-    echo "  /load skill repolore-blog"
+    if [ "${SKILLS_DIR}" = "${DEFAULT_SKILLS_DIR}" ]; then
+        echo "Usage (Claude Code):"
+        echo "  /load skill repolore-blog"
+    else
+        echo -e "${YELLOW}Note: Skills installed to custom directory${NC}"
+        echo "Make sure your agent system is configured to read from:"
+        echo "  ${SKILLS_DIR}"
+    fi
     echo ""
-    echo "Or install with template:"
-    echo "  curl -fsSL repolore.com/install | bash -s -- --with-template"
 }
 
 main "$@"

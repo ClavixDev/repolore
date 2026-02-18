@@ -65,6 +65,10 @@ See [REPOLORE.md.example](REPOLORE.md.example) for the full template.
 
 ## Installation Methods
 
+### Claude Code (Default)
+
+Skills install to `~/.claude/skills/` by default:
+
 ```bash
 # All skills
 curl -fsSL repolore.com/install | bash
@@ -77,6 +81,28 @@ curl -fsSL repolore.com/install | bash -s -- linkedin
 # Multiple skills
 curl -fsSL repolore.com/install | bash -s -- blog x linkedin
 ```
+
+After installation, load skills in Claude Code:
+```
+/load skill repolore-blog
+```
+
+### Custom Directory (Generic Agents)
+
+Use the `--dir` flag to install to a custom directory:
+
+```bash
+# Install to ~/.config/agents/skills
+curl -fsSL repolore.com/install | bash -s -- --dir ~/.config/agents/skills
+
+# Install specific skills to custom directory
+curl -fsSL repolore.com/install | bash -s -- --dir ~/.config/agents/skills blog x
+
+# Short form
+curl -fsSL repolore.com/install | bash -s -- -d ~/.config/agents/skills blog
+```
+
+Make sure your agent system is configured to read from the specified directory.
 
 ## Website
 
