@@ -1,14 +1,13 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-cloudflare';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
 		adapter: adapter({
-			pages: '.svelte-kit/cloudflare',
-			assets: '.svelte-kit/cloudflare',
-			fallback: undefined,
-			precompress: false,
-			strict: true
+			routes: {
+				include: ['/*'],
+				exclude: ['<all>']
+			}
 		})
 	}
 };
