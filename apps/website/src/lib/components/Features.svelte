@@ -104,9 +104,9 @@
       <div class="inline-block px-4 py-1 border border-neon-cyan/30 text-neon-cyan font-mono text-sm mb-6">
         // SYSTEM_CAPABILITIES
       </div>
-      <h2 class="text-4xl md:text-5xl font-black font-display uppercase tracking-wider mb-4">
-        <span class="text-fg-primary">EVERYTHING_YOU_NEED_TO</span><br>
-        <span class="text-neon-green text-glow">SCALE_YOUR_CONTENT</span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-black font-display uppercase tracking-wider mb-4">
+        <span class="text-fg-primary">EVERYTHING_YOU_NEED_TO</span><br class="sm:hidden">
+        <span class="hidden sm:inline"> </span><span class="text-neon-green text-glow">SCALE_YOUR_CONTENT</span>
       </h2>
       <p class="text-xl text-fg-muted max-w-2xl mx-auto font-mono">
         > Powerful features to automate your developer content workflow<span class="text-neon-green cursor-blink"></span>
@@ -115,10 +115,10 @@
 
     <!-- Content Skills Section -->
     <div class="mb-16">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-neon-green/30 to-transparent"></div>
-        <h3 class="text-lg font-mono text-neon-green uppercase tracking-wider">// Content_Skills</h3>
-        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-neon-green/30 to-transparent"></div>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
+        <div class="h-px flex-1 min-w-[20px] bg-gradient-to-r from-transparent via-neon-green/30 to-transparent"></div>
+        <h3 class="text-lg font-mono text-neon-green uppercase tracking-wider whitespace-nowrap">// Content_Skills</h3>
+        <div class="h-px flex-1 min-w-[20px] bg-gradient-to-r from-transparent via-neon-green/30 to-transparent"></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {#each contentSkills as feature, i}
@@ -147,10 +147,10 @@
 
     <!-- Platform & Workflow Section -->
     <div class="mb-16">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-neon-magenta/30 to-transparent"></div>
-        <h3 class="text-lg font-mono text-neon-magenta uppercase tracking-wider">// Platform_&_Workflow</h3>
-        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-neon-magenta/30 to-transparent"></div>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
+        <div class="h-px flex-1 min-w-[20px] bg-gradient-to-r from-transparent via-neon-magenta/30 to-transparent"></div>
+        <h3 class="text-lg font-mono text-neon-magenta uppercase tracking-wider whitespace-nowrap">// Platform_&_Workflow</h3>
+        <div class="h-px flex-1 min-w-[20px] bg-gradient-to-r from-transparent via-neon-magenta/30 to-transparent"></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {#each platformFeatures as feature, i}
@@ -179,10 +179,10 @@
 
     <!-- Technical Section -->
     <div>
-      <div class="flex items-center gap-4 mb-8">
-        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent"></div>
-        <h3 class="text-lg font-mono text-neon-cyan uppercase tracking-wider">// Technical</h3>
-        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent"></div>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
+        <div class="h-px flex-1 min-w-[20px] bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent"></div>
+        <h3 class="text-lg font-mono text-neon-cyan uppercase tracking-wider whitespace-nowrap">// Technical</h3>
+        <div class="h-px flex-1 min-w-[20px] bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent"></div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {#each technicalFeatures as feature, i}

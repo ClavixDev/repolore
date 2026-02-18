@@ -115,15 +115,15 @@
 
 <section class="min-h-screen flex items-center justify-center pt-32 relative overflow-hidden cyber-grid">
   <!-- Neon orbs -->
-  <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-neon-green/5 rounded-full blur-[100px]"></div>
-  <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-neon-magenta/5 rounded-full blur-[80px]"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-cyan/3 rounded-full blur-[120px]"></div>
+  <div class="absolute top-1/4 left-1/4 w-[200px] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-neon-green/5 rounded-full blur-[100px]"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-[150px] sm:w-[300px] md:w-[400px] h-[150px] sm:h-[300px] md:h-[400px] bg-neon-magenta/5 rounded-full blur-[80px]"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] md:w-[800px] h-[300px] sm:h-[500px] md:h-[800px] bg-neon-cyan/3 rounded-full blur-[120px]"></div>
 
   <!-- Corner decorations -->
-  <div class="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-neon-green/30"></div>
-  <div class="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-neon-magenta/30"></div>
-  <div class="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-neon-cyan/30"></div>
-  <div class="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-neon-green/30"></div>
+  <div class="absolute top-0 left-0 w-16 sm:w-32 h-16 sm:h-32 border-l-2 border-t-2 border-neon-green/30"></div>
+  <div class="absolute top-0 right-0 w-16 sm:w-32 h-16 sm:h-32 border-r-2 border-t-2 border-neon-magenta/30"></div>
+  <div class="absolute bottom-0 left-0 w-16 sm:w-32 h-16 sm:h-32 border-l-2 border-b-2 border-neon-cyan/30"></div>
+  <div class="absolute bottom-0 right-0 w-16 sm:w-32 h-16 sm:h-32 border-r-2 border-b-2 border-neon-green/30"></div>
 
   <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
     {#if visible}
@@ -135,7 +135,7 @@
       </div>
 
       <div in:fly={{ y: 30, duration: 800, delay: 150 }}>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black font-display uppercase tracking-widest mb-6 leading-tight">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-display uppercase tracking-widest mb-6 leading-tight">
           <span class="text-fg-primary" data-text="SEO_CONTENT">SEO_CONTENT</span><br>
           <span
             class="text-neon-green text-glow glitch"
