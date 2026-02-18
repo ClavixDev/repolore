@@ -1,0 +1,79 @@
+# RepoLore
+
+> Open-source SEO content generation skills for Claude Code. Transform git commits into blog posts, changelogs, and social media content.
+
+## What is RepoLore?
+
+RepoLore is a collection of 8 agentic skills that help developers create content from their git history. Instead of staring at a blank page after shipping features, RepoLore analyzes your commits and generates ready-to-publish content.
+
+## The 8 Skills
+
+1. **repolore-blog** - Long-form technical blog posts (800-1500 words)
+2. **repolore-changelog** - Keep a Changelog format entries
+3. **repolore-x** - Twitter/X threads and single tweets
+4. **repolore-linkedin** - Professional LinkedIn posts
+5. **repolore-reddit** - Discussion-focused Reddit posts with subreddit suggestions
+6. **repolore-devto** - Dev.to articles with YAML frontmatter
+7. **repolore-newsletter** - Email newsletters with subject/preview/body
+8. **repolore-init** - Initialize REPOLORE.md configuration
+
+## Quick Install
+
+```bash
+curl -sL https://repolore.dev/install.sh | bash
+```
+
+Or install to a custom directory:
+```bash
+curl -sL https://repolore.dev/install.sh | bash -s -- ~/.my-skills
+```
+
+## Basic Usage
+
+After installation, load any skill in Claude Code:
+
+```
+/load skill repolore-blog
+
+# Then ask:
+"Write a blog post about my last 5 commits"
+```
+
+## REPOLORE.md Configuration
+
+Create a `REPOLORE.md` in your repo root for consistent output:
+
+```yaml
+---
+project: MyProject
+tone: technical_but_accessible
+audience: developers
+seo_pillars:
+  - ai-assisted development
+  - developer productivity
+---
+
+# Project Context
+Brief description of your project...
+
+# Key Features
+- Feature 1
+- Feature 2
+
+# Brand Voice
+How you want your content to sound...
+```
+
+## Why RepoLore?
+
+- **Context-aware**: Analyzes actual git diffs, not just commit messages
+- **Consistent voice**: REPOLORE.md ensures all content matches your brand
+- **Multi-platform**: Generate content for 7 platforms from one analysis
+- **Self-hosted**: Your code never leaves your machine
+- **Open source**: MIT licensed, community driven
+
+## Learn More
+
+- Website: https://repolore.dev
+- GitHub: https://github.com/ClavixDev/repolore
+- Documentation: https://github.com/ClavixDev/repolore/tree/main/skills

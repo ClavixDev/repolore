@@ -8,11 +8,109 @@
   onMount(() => {
     visible = true;
   });
+
+  // Schema.org structured data
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "RepoLore",
+    "url": "https://repolore.dev",
+    "description": "Open-source SEO content generation skills for AI agents. Transform git commits into blog posts, changelogs, and social media.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://repolore.dev/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "RepoLore",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Open-source SEO content generation skills for Claude Code. Transform git commits into blog posts, changelogs, and social media content.",
+    "url": "https://repolore.dev",
+    "codeRepository": "https://github.com/ClavixDev/repolore",
+    "programmingLanguage": ["TypeScript", "JavaScript", "Bash"],
+    "license": "https://opensource.org/licenses/MIT",
+    "featureList": [
+      "Generate blog posts from git commits",
+      "Create changelogs automatically",
+      "Generate social media content for X, LinkedIn, Reddit",
+      "Create dev.to articles",
+      "Write newsletters",
+      "Multi-platform content generation",
+      "REPOLORE.md configuration",
+      "Self-hosted with no external APIs"
+    ],
+    "author": {
+      "@type": "Organization",
+      "name": "ClavixDev"
+    }
+  };
+
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ClavixDev",
+    "url": "https://clavix.dev",
+    "logo": "https://repolore.dev/logo.png",
+    "sameAs": [
+      "https://github.com/ClavixDev"
+    ]
+  };
+
+  // OpenGraph meta tags
+  const ogTitle = "RepoLore - Open Source SEO Content Skills";
+  const ogDescription = "Transform git commits into blog posts, changelogs, and social media content. 8 agentic skills for Claude Code.";
+  const ogImage = "https://repolore.dev/og-image.png";
+  const ogUrl = "https://repolore.dev";
+
+  // Twitter Card meta tags
+  const twitterCard = "summary_large_image";
+  const twitterSite = "@repolore";
+  const twitterCreator = "@clavixdev";
 </script>
 
 <svelte:head>
   <title>RepoLore // Open Source SEO Skills</title>
   <meta name="description" content="Open-source SEO content generation skills for AI agents. Transform PRs and commits into compelling content." />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://repolore.dev" />
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content={ogTitle} />
+  <meta property="og:description" content={ogDescription} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={ogUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="RepoLore" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content={twitterCard} />
+  <meta name="twitter:site" content={twitterSite} />
+  <meta name="twitter:creator" content={twitterCreator} />
+  <meta name="twitter:title" content={ogTitle} />
+  <meta name="twitter:description" content={ogDescription} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+    {JSON.stringify(websiteSchema)}
+  </script>
+  <script type="application/ld+json">
+    {JSON.stringify(softwareSchema)}
+  </script>
+  <script type="application/ld+json">
+    {JSON.stringify(orgSchema)}
+  </script>
 </svelte:head>
 
 <section class="min-h-screen flex items-center justify-center pt-32 relative overflow-hidden cyber-grid">

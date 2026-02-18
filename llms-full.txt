@@ -1,0 +1,502 @@
+# RepoLore - Complete Documentation
+
+> Open-source SEO content generation skills for Claude Code. Transform git commits into blog posts, changelogs, and social media content.
+
+---
+
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Architecture](#architecture)
+3. [Installation](#installation)
+4. [All 8 Skills](#all-8-skills)
+5. [REPOLORE.md Specification](#repoloremd-specification)
+6. [Configuration Options](#configuration-options)
+7. [Output Formats](#output-formats)
+8. [Workflows](#workflows)
+9. [Common Patterns](#common-patterns)
+
+---
+
+## Project Overview
+
+RepoLore is a collection of agentic skills that transform git history into publishable content. Instead of staring at a blank page after shipping features, developers can use RepoLore skills to analyze commits and generate ready-to-publish blog posts, changelogs, tweets, LinkedIn updates, Reddit posts, dev.to articles, and newsletters.
+
+### Key Philosophy
+
+**Context beats prompts.** Generic AI content generation produces generic results. By analyzing actual git diffs and using project-specific configuration, RepoLore creates content that sounds like you, not generic AI output.
+
+### What Makes RepoLore Different
+
+1. **Deep Git Analysis**: Reads actual code changes, not just commit messages
+2. **Project Context**: REPOLORE.md ensures consistent tone and messaging
+3. **Self-Hosted**: No external APIs, your code never leaves your machine
+4. **Agentic**: Native Claude Code integration with structured skill definitions
+5. **Multi-Platform**: Generate content for 7 platforms from a single analysis
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    User Request                          │
+│         "Write a blog post about my commits"            │
+└────────────────┬────────────────────────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────────────────────────────┐
+│                    Skill Loaded                          │
+│              (e.g., repolore-blog)                       │
+└────────────────┬────────────────────────────────────────┘
+                 │
+    ┌────────────┼────────────┐
+    ▼            ▼            ▼
+┌────────┐  ┌─────────┐  ┌──────────┐
+│git log │  │git diff │  │REPOLORE. │
+│analysis│  │analysis │  │md context│
+└───┬────┘  └────┬────┘  └─────┬────┘
+    │            │             │
+    └────────────┼─────────────┘
+                 ▼
+┌─────────────────────────────────────────────────────────┐
+│              Content Generation                          │
+│    - Outline generation (with user approval)            │
+│    - Full content writing                               │
+│    - SEO optimization                                   │
+│    - Platform-specific formatting                       │
+└────────────────┬────────────────────────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────────────────────────────┐
+│                 File Output                              │
+│         Saved to .repolore/ directory                   │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Installation
+
+### Default Installation
+
+Installs skills to `~/.claude/skills/repolore/`:
+
+```bash
+curl -sL https://repolore.dev/install.sh | bash
+```
+
+### Custom Directory Installation
+
+```bash
+curl -sL https://repolore.dev/install.sh | bash -s -- /path/to/custom/dir
+```
+
+### Manual Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/ClavixDev/repolore.git
+
+# Copy skills to Claude Code skills directory
+cp -r repolore/skills/* ~/.claude/skills/
+
+# Or use the install script with custom path
+./repolore/apps/website/static/install.sh /custom/path
+```
+
+### Verify Installation
+
+```bash
+ls ~/.claude/skills/repolore-*
+# Should show all 8 skill directories
+```
+
+---
+
+## All 8 Skills
+
+### 1. repolore-blog
+
+Generate SEO-optimized technical blog posts from git commits.
+
+**Usage:**
+```
+/load skill repolore-blog
+
+"Analyze my last 3 commits and write a blog post"
+"Write a blog post about the auth improvements between v1.0 and v1.1"
+```
+
+**Output:** `.repolore/blog/repolore-blogpost-YYYYMMDD-HHMMSS.md`
+
+**Format:**
+- YAML frontmatter (title, description, date, tags)
+- TL;DR section
+- H2/H3 structured content
+- Code examples from actual diffs
+- 800-1500 words
+
+---
+
+### 2. repolore-changelog
+
+Create Keep a Changelog formatted entries.
+
+**Usage:**
+```
+/load skill repolore-changelog
+
+"Generate changelog for the latest release"
+"What changed since v1.0.0?"
+```
+
+**Output:** `.repolore/changelog/CHANGELOG-YYYYMMDD.md`
+
+**Format:**
+- Follows Keep a Changelog specification
+- Categories: Added, Changed, Deprecated, Removed, Fixed, Security
+- Version comparison
+
+---
+
+### 3. repolore-x
+
+Generate Twitter/X threads and single tweets.
+
+**Usage:**
+```
+/load skill repolore-x
+
+"Create a thread about my latest feature"
+"Write a tweet about the performance improvements"
+```
+
+**Output:** `.repolore/x/x-content-YYYYMMDD-HHMMSS.md`
+
+**Format:**
+- Single tweets (max 280 characters)
+- Thread format with numbered posts
+- Optimized hashtags
+- Hook-focused openings
+
+---
+
+### 4. repolore-linkedin
+
+Create professional LinkedIn posts.
+
+**Usage:**
+```
+/load skill repolore-linkedin
+
+"Write a LinkedIn post about the new release"
+"Create a professional update about my API improvements"
+```
+
+**Output:** `.repolore/linkedin/linkedin-post-YYYYMMDD-HHMMSS.md`
+
+**Format:**
+- 1000-1300 character posts
+- Professional but conversational tone
+- Line breaks for readability
+- Engagement-focused structure
+
+---
+
+### 5. repolore-reddit
+
+Generate discussion-focused Reddit posts.
+
+**Usage:**
+```
+/load skill repolore-reddit
+
+"Write a Reddit post about this feature for r/webdev"
+"Create a discussion post about my architecture changes"
+```
+
+**Output:** `.repolore/reddit/reddit-post-YYYYMMDD-HHMMSS.md`
+
+**Format:**
+- Community-focused language
+- Subreddit suggestions
+- Discussion prompts
+- Technical depth appropriate for subreddit
+
+---
+
+### 6. repolore-devto
+
+Generate dev.to optimized articles.
+
+**Usage:**
+```
+/load skill repolore-devto
+
+"Write a dev.to article about my React hooks"
+"Create a tutorial post from my recent commits"
+```
+
+**Output:** `.repolore/devto/devto-article-YYYYMMDD-HHMMSS.md`
+
+**Format:**
+- YAML frontmatter with dev.to tags
+- Tutorial-style structure
+- Code blocks with syntax highlighting
+- Cover image suggestions
+
+---
+
+### 7. repolore-newsletter
+
+Create email newsletters.
+
+**Usage:**
+```
+/load skill repolore-newsletter
+
+"Write a newsletter issue about this week's changes"
+"Create an email update for my subscribers"
+```
+
+**Output:** `.repolore/newsletter/newsletter-YYYYMMDD-HHMMSS.md`
+
+**Format:**
+- Subject line
+- Preview text (preheader)
+- Body content
+- Call-to-action
+
+---
+
+### 8. repolore-init
+
+Initialize REPOLORE.md configuration.
+
+**Usage:**
+```
+/load skill repolore-init
+
+"Initialize repolore for this project"
+"Create REPOLORE.md for my repository"
+```
+
+**Output:** `REPOLORE.md` in project root
+
+**Purpose:**
+- Auto-detects project info
+- Collects project context
+- Generates configuration file
+- Sets up content generation workflow
+
+---
+
+## REPOLORE.md Specification
+
+The REPOLORE.md file provides project context for all content generation skills.
+
+### Full Schema
+
+```yaml
+---
+project: string                    # Project name
+tone: enum                        # See tone options below
+audience: enum                    # See audience options below
+seo_pillars:                      # 3-5 key topics/themes
+  - string
+  - string
+twitter_handle: string           # Optional: @handle
+devto_tags:                      # Optional: dev.to tags
+  - string
+  - string
+newsletter_from: string          # Optional: Author name
+---
+
+# Project Context
+Brief description of what this project does (1-2 paragraphs).
+Include the problem it solves and key benefits.
+
+# Key Features
+- Feature 1: Brief description
+- Feature 2: Brief description
+- Feature 3: Brief description
+
+# Target Audience
+Description of ideal reader/user. Be specific about their
+background, pain points, and what they're looking for.
+
+# Brand Voice
+How content should sound. Use comparisons:
+"Like a senior dev explaining over coffee, not like documentation"
+"Technical but accessible, enthusiastic but not hype-y"
+```
+
+### Tone Options
+
+- `technical_but_accessible` - Explains complex topics simply
+- `professional` - Corporate but not dry
+- `casual` - Friendly, conversational
+- `enthusiastic` - Excited about the technology
+- `authoritative` - Expert voice, confident
+
+### Audience Options
+
+- `developers` - General software developers
+- `end_users` - Non-technical users
+- `technical_founders` - Startup founders with technical background
+- `open_source_maintainers` - OSS project maintainers
+- Specific niches: `react_developers`, `ai_engineers`, etc.
+
+---
+
+## Configuration Options
+
+### Per-Skill Configuration
+
+Skills respect REPOLORE.md settings but can be overridden:
+
+**Blog Posts:**
+- Word count: 800-1500 (configurable via prompt)
+- Include code examples: always
+- TL;DR section: always included
+
+**Changelogs:**
+- Format: Keep a Changelog spec
+- Categories: All standard categories
+- Version tags: auto-detected
+
+**Social Posts:**
+- X: 280 character limit
+- LinkedIn: 1000-1300 characters
+- Reddit: varies by subreddit
+
+**Dev.to:**
+- Tags: from REPOLORE.md devto_tags
+- Series: specify in prompt
+- Cover image: suggestions provided
+
+**Newsletters:**
+- Subject line: auto-generated
+- Preview text: included
+- Tone: from REPOLORE.md
+
+---
+
+## Output Formats
+
+### Directory Structure
+
+```
+.repolore/
+├── blog/
+│   └── repolore-blogpost-20240115-143022.md
+├── changelog/
+│   └── CHANGELOG-20240115.md
+├── x/
+│   └── x-content-20240115-143022.md
+├── linkedin/
+│   └── linkedin-post-20240115-143022.md
+├── reddit/
+│   └── reddit-post-20240115-143022.md
+├── devto/
+│   └── devto-article-20240115-143022.md
+└── newsletter/
+    └── newsletter-20240115-143022.md
+```
+
+### File Naming Convention
+
+- Timestamp-based: `YYYYMMDD-HHMMSS`
+- Skill-specific prefixes
+- Markdown format (.md)
+
+### Git Integration
+
+All output directories are automatically added to `.gitignore`:
+
+```bash
+mkdir -p .repolore/blog
+echo ".repolore/" >> .gitignore
+```
+
+---
+
+## Workflows
+
+### Setup Workflow
+
+1. Install RepoLore: `curl -sL https://repolore.dev/install.sh | bash`
+2. Initialize project: Load `repolore-init`, run "Initialize repolore"
+3. Configure REPOLORE.md with project details
+4. Start generating content
+
+### Content Generation Workflow
+
+1. Make commits with clear messages
+2. Load relevant skill (e.g., `repolore-blog`)
+3. Request content: "Write a blog post about my recent commits"
+4. Review generated outline
+5. Approve or request changes
+6. Review full content
+7. Edit if needed
+8. Publish to platform
+
+### Multi-Platform Workflow
+
+1. Load `repolore-blog` - Generate detailed blog post
+2. Load `repolore-x` - Create thread from blog highlights
+3. Load `repolore-linkedin` - Adapt for professional network
+4. Load `repolore-devto` - Cross-post with dev.to formatting
+5. Load `repolore-newsletter` - Include in next email
+
+---
+
+## Common Patterns
+
+### Pattern: Release Announcement
+
+```
+1. repolore-changelog → Generate changelog
+2. repolore-blog → Write announcement post
+3. repolore-x → Create announcement thread
+4. repolore-linkedin → Professional network update
+```
+
+### Pattern: Feature Deep-Dive
+
+```
+1. repolore-blog → Technical deep-dive post
+2. repolore-devto → Tutorial version
+3. repolore-reddit → Discussion post for community
+```
+
+### Pattern: Weekly Updates
+
+```
+1. repolore-newsletter → Weekly summary email
+2. repolore-changelog → Detailed change list
+```
+
+---
+
+## Best Practices
+
+1. **Commit frequently**: More commits = more context for better content
+2. **Write clear commit messages**: Helps AI understand your intent
+3. **Update REPOLORE.md**: Keep project context current
+4. **Review outlines**: The approval step catches misunderstandings
+5. **Edit output**: AI gets you 80% there, your final 20% makes it great
+
+---
+
+## Resources
+
+- **Website**: https://repolore.dev
+- **GitHub**: https://github.com/ClavixDev/repolore
+- **Issues**: https://github.com/ClavixDev/repolore/issues
+- **License**: MIT
+
+---
+
+*Generated for RepoLore - Transform your git history into compelling content.*
