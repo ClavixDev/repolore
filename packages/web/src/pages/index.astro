@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout title="RepoLore — Coming Soon">
+  <main class="min-h-screen flex items-center justify-center px-4">
+    <div class="text-center max-w-2xl">
+      <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
+        <span class="text-gradient-green">Repo</span><span class="text-gradient-gold">Lore</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-text-secondary mb-8">
+        Your code has a story. Let it tell itself.
+      </p>
+      <div class="bg-bg-surface border border-[var(--color-accent-green-border)] rounded-lg p-6 font-mono text-sm text-text-secondary">
+        <p class="text-accent-green">$</p>
+        <p class="mt-2">coming_soon = true</p>
+        <p class="text-accent-gold mt-2"># Transform commits into content</p>
+      </div>
+      <div class="mt-8 flex justify-center gap-4">
+        <span class="px-4 py-2 bg-[var(--color-accent-green-bg)] border border-[var(--color-accent-green-border)] rounded text-accent-green text-sm">
+          Astro 5
+        </span>
+        <span class="px-4 py-2 bg-[var(--color-accent-gold-bg)] border border-[var(--color-accent-gold-border)] rounded text-accent-gold text-sm">
+          Cloudflare Workers
+        </span>
+      </div>
+    </div>
+  </main>
+</Layout>

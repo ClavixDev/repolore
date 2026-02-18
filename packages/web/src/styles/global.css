@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* Import fonts */
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-Variable.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono-Variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  /* Background layers */
+  --color-bg-base: #0A0A0F;
+  --color-bg-surface: #12121A;
+  --color-bg-elevated: #1A1A25;
+  --color-bg-overlay: #22222F;
+
+  /* Text */
+  --color-text-primary: #F0F0F5;
+  --color-text-secondary: #8888A0;
+  --color-text-tertiary: #55556A;
+
+  /* Accent: Code/Tech (Green) */
+  --color-accent-green: #39FF14;
+  --color-accent-green-muted: #2AD10E;
+  --color-accent-green-bg: rgba(57, 255, 20, 0.08);
+  --color-accent-green-border: rgba(57, 255, 20, 0.2);
+
+  /* Accent: Content/Story (Gold) */
+  --color-accent-gold: #F5A623;
+  --color-accent-gold-muted: #D4912A;
+  --color-accent-gold-bg: rgba(245, 166, 35, 0.08);
+  --color-accent-gold-border: rgba(245, 166, 35, 0.2);
+
+  /* Semantic */
+  --color-success: #39FF14;
+  --color-warning: #F5A623;
+  --color-error: #FF4444;
+  --color-info: #4488FF;
+
+  /* Typography */
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+}
+
+/* Base styles */
+html {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent-green-bg);
+  color: var(--color-accent-green);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Code blocks */
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+}
+
+/* Utility classes */
+.text-gradient-green {
+  background: linear-gradient(135deg, var(--color-accent-green) 0%, var(--color-accent-green-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-accent-gold) 0%, var(--color-accent-gold-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-green {
+  box-shadow: 0 0 20px var(--color-accent-green-bg);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px var(--color-accent-gold-bg);
+}

@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Turn commits into blog posts and social content" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#0A0A0F" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title}</title>
+</head>
+<body class="bg-bg-base text-text-primary antialiased">
+  <slot />
+</body>
+</html>

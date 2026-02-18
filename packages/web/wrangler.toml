@@ -1,0 +1,46 @@
+name = "repolore"
+main = "./worker.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Assets handled by Astro
+[assets]
+directory = "./dist/client"
+
+# D1 Database
+[[d1_databases]]
+binding = "REPOLORE_DB"
+database_name = "repolore-db"
+database_id = "810d55dc-3417-4954-8c3f-2c1a19d5745c"
+
+# Queues
+[[queues.producers]]
+binding = "OUTLINE_QUEUE"
+queue = "repolore-outline-queue"
+
+[[queues.producers]]
+binding = "CONTENT_QUEUE"
+queue = "repolore-content-queue"
+
+[[queues.consumers]]
+queue = "repolore-outline-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+
+[[queues.consumers]]
+queue = "repolore-content-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+
+# Route for custom domain
+[[routes]]
+pattern = "repolore.com"
+custom_domain = true
+
+[[routes]]
+pattern = "www.repolore.com"
+custom_domain = true

@@ -1,12 +1,11 @@
-<script>
+<script lang="ts">
   import '../app.css';
+  import Header from '$lib/components/Header.svelte';
+  import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<svelte:head>
-  <title>Repolore - Git Commits to Content</title>
-  <meta name="description" content="Transform your git commits into blog posts, tweets, LinkedIn updates, and more. Agentic skills for developer content." />
-</svelte:head>
-
-<div class="min-h-screen bg-white">
+<Header />
+<main>
   <slot />
-</div>
+</main>
+<Footer />

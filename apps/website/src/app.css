@@ -1,14 +1,173 @@
 @import "tailwindcss";
 
-:root {
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+@theme {
+  /* Cyberpunk Colors */
+  --color-bg-void: #0a0a0f;
+  --color-bg-card: #12121a;
+  --color-bg-muted: #1c1c2e;
+  --color-fg-primary: #e0e0e0;
+  --color-fg-muted: #6b7280;
+
+  /* Neon Accents */
+  --color-neon-green: #00ff88;
+  --color-neon-magenta: #ff00ff;
+  --color-neon-cyan: #00d4ff;
+  --color-neon-red: #ff3366;
+
+  /* Aliases for compatibility */
+  --color-bg-base: var(--color-bg-void);
+  --color-bg-surface: var(--color-bg-card);
+  --color-bg-elevated: var(--color-bg-muted);
+  --color-text-primary: var(--color-fg-primary);
+  --color-text-secondary: var(--color-fg-muted);
+  --color-accent-green: var(--color-neon-green);
+  --color-accent-gold: var(--color-neon-magenta);
+  --color-accent-cyan: var(--color-neon-cyan);
+  --color-border: #2a2a3a;
+  --color-destructive: var(--color-neon-red);
+
+  /* Fonts */
+  --font-display: 'Orbitron', 'Share Tech Mono', monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+/* Utility classes for fonts */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-sans);
+  background-color: var(--color-bg-void);
+  color: var(--color-fg-primary);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+}
+
+/* Scanline Overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+}
+
+/* Grid/Circuit Background Pattern */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Neon Glow Effects */
+.neon-glow {
+  box-shadow: 0 0 5px var(--color-neon-green), 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+.neon-glow-magenta {
+  box-shadow: 0 0 5px var(--color-neon-magenta), 0 0 20px rgba(255, 0, 255, 0.6);
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 0 5px var(--color-neon-cyan), 0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+/* Text Glow */
+.text-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Chamfered Corners (clip-path) */
+.chamfer {
+  clip-path: polygon(
+    0 10px, 10px 0,
+    calc(100% - 10px) 0, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 0 calc(100% - 10px)
+  );
+}
+
+.chamfer-sm {
+  clip-path: polygon(
+    0 6px, 6px 0,
+    calc(100% - 6px) 0, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 6px) 100%,
+    6px 100%, 0 calc(100% - 6px)
+  );
+}
+
+/* Chromatic Aberration Glitch */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  color: var(--color-neon-magenta);
+  animation: rgbShift 2s infinite;
+  z-index: -1;
+}
+
+.glitch::after {
+  color: var(--color-neon-cyan);
+  animation: rgbShift 2s infinite reverse;
+  z-index: -2;
+}
+
+@keyframes rgbShift {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: var(--color-neon-green);
+}
+
+/* Glitch Animation Keyframes */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
 }
 
 /* Custom scrollbar */
@@ -18,21 +177,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-bg-void);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
+  background: var(--color-neon-green);
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
-}
-
-/* Code block styling */
-pre {
-  font-family: var(--font-mono);
+  background: var(--color-neon-cyan);
 }
 
 /* Animation utilities */
