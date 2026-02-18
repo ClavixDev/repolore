@@ -71,7 +71,7 @@
           </div>
           <button
             onclick={() => copyToClipboard('curl -fsSL repolore.com/install | bash', 'quickstart')}
-            class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-bg-card border border-neon-green/30 text-neon-green hover:border-neon-green hover:bg-neon-green/10 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+            class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-bg-card border border-neon-green/30 text-neon-green hover:border-neon-green hover:bg-neon-green/10 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100"
             aria-label="Copy command"
           >
             {#if copiedId === 'quickstart'}
@@ -89,7 +89,7 @@
           </div>
           <button
             onclick={() => copyToClipboard('/load skill repolore-blog', 'loadskill')}
-            class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-bg-card border border-neon-green/30 text-neon-green hover:border-neon-green hover:bg-neon-green/10 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+            class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-bg-card border border-neon-green/30 text-neon-green hover:border-neon-green hover:bg-neon-green/10 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100"
             aria-label="Copy command"
           >
             {#if copiedId === 'loadskill'}
@@ -153,7 +153,7 @@
               </div>
               <button
                 onclick={() => copyToClipboard(method.code, `method-${i}`)}
-                class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-bg-card border border-neon-cyan/30 text-neon-cyan hover:border-neon-cyan hover:bg-neon-cyan/10 transition-all opacity-0 group-hover/code:opacity-100 focus:opacity-100"
+                class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-bg-card border border-neon-cyan/30 text-neon-cyan hover:border-neon-cyan hover:bg-neon-cyan/10 transition-all opacity-100 sm:opacity-0 sm:group-hover/code:opacity-100 focus:opacity-100"
                 aria-label="Copy command"
               >
                 {#if copiedId === `method-${i}`}
@@ -175,7 +175,7 @@
         </p>
         <button
           onclick={() => copyToClipboard('curl -fsSL repolore.com/install | bash -s -- blog x linkedin', 'specific')}
-          class="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-bg-void border border-neon-magenta/30 text-neon-magenta hover:border-neon-magenta hover:bg-neon-magenta/10 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+          class="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-bg-void border border-neon-magenta/30 text-neon-magenta hover:border-neon-magenta hover:bg-neon-magenta/10 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100"
           aria-label="Copy command"
         >
           {#if copiedId === 'specific'}
