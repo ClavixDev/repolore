@@ -2,6 +2,7 @@
   import { fly } from 'svelte/transition';
   import { onMount } from 'svelte';
   import Features from '$lib/components/Features.svelte';
+  import Instructions from '$lib/components/Instructions.svelte';
 
   let visible = $state(false);
 
@@ -187,3 +188,5 @@
 </section>
 
 <Features />
+
+<Instructions />
