@@ -104,9 +104,9 @@
       <div class="inline-block px-4 py-1 border border-neon-cyan/30 text-neon-cyan font-mono text-sm mb-6">
         // SYSTEM_CAPABILITIES
       </div>
-      <h2 class="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-1 sm:gap-2 text-xl sm:text-3xl md:text-4xl font-black font-display uppercase tracking-wider mb-4">
-        <span class="text-fg-primary">EVERYTHING_YOU_NEED_TO</span>
-        <span class="text-neon-green text-glow">SCALE_YOUR_CONTENT</span>
+      <h2 class="flex flex-col items-center gap-1 text-xl sm:text-3xl md:text-4xl font-black font-display uppercase tracking-wider mb-4">
+        <span class="text-fg-primary">EVERYTHING_YOU_NEED</span>
+        <span><span class="text-fg-primary">TO_</span><span class="text-neon-green text-glow">SCALE_YOUR_CONTENT</span></span>
       </h2>
       <p class="text-xl text-fg-muted max-w-2xl mx-auto font-mono">
         > Powerful features to automate your developer content workflow<span class="text-neon-green cursor-blink"></span>
