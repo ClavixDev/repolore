@@ -24,7 +24,7 @@
         class="block p-6 border border-neon-green/30 bg-bg-card hover:border-neon-green transition-all chamfer group"
       >
         <div class="flex items-center gap-4">
-          <span class="text-3xl">🐙</span>
+          <span class="text-3xl font-mono">&lt;/&gt;</span>
           <div>
             <h3 class="text-lg font-bold text-fg-primary group-hover:text-neon-green transition-colors">
               GitHub Repository
@@ -53,22 +53,6 @@
         </div>
       </a>
 
-      <a
-        href="https://github.com/ClavixDev/repolore/discussions"
-        class="block p-6 border border-neon-cyan/30 bg-bg-card hover:border-neon-cyan transition-all chamfer group"
-      >
-        <div class="flex items-center gap-4">
-          <span class="text-3xl">💬</span>
-          <div>
-            <h3 class="text-lg font-bold text-fg-primary group-hover:text-neon-cyan transition-colors">
-              Discussions
-            </h3>
-            <p class="text-sm text-fg-muted font-mono">
-              > Ask questions, share ideas
-            </p>
-          </div>
-        </div>
-      </a>
     </div>
   </div>
 </section>

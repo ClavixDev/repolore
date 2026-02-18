@@ -58,7 +58,7 @@
       <div in:fly={{ y: 30, duration: 800, delay: 450 }} class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
           href="https://github.com/ClavixDev/repolore"
-          class="px-8 py-4 bg-neon-green text-void font-bold font-mono uppercase tracking-wider chamfer hover:brightness-110 transition-all hover:scale-105 neon-glow"
+          class="px-8 py-4 bg-neon-green text-gray-900 font-bold font-mono uppercase tracking-wider chamfer hover:brightness-110 transition-all hover:scale-105 neon-glow"
         >
           View_on_GitHub
         </a>

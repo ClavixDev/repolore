@@ -5,37 +5,37 @@
     {
       icon: '▸',
       title: 'BLOG_POSTS',
-      description: '> AUTO_GENERATE detailed blog posts from PRs and commits using advanced AI models.',
+      description: '> Generate SEO-optimized technical blog posts from your git commits.',
       color: 'neon-green'
     },
     {
       icon: '▸',
       title: 'CHANGELOGS',
-      description: '> CREATE beautiful, readable changelogs for every release automatically.',
+      description: '> Create Keep a Changelog formatted entries automatically.',
       color: 'neon-magenta'
     },
     {
       icon: '▸',
       title: 'SOCIAL_CONTENT',
-      description: '> TRANSFORM technical updates into engaging tweets and LinkedIn posts.',
+      description: '> Generate engaging X/Twitter, LinkedIn, and Reddit posts.',
       color: 'neon-cyan'
     },
     {
       icon: '▸',
-      title: 'GITHUB_INTEGRATION',
-      description: '> CONNECT repositories and let AI handle your content pipeline.',
+      title: 'MULTI_PLATFORM',
+      description: '> Publish to Dev.to, newsletters, and social platforms.',
       color: 'neon-green'
     },
     {
       icon: '▸',
-      title: 'LIGHTNING_FAST',
-      description: '> GENERATE content in seconds, not hours. Focus on coding.',
+      title: 'PROJECT_CONTEXT',
+      description: '> Uses REPOLORE.md for customized tone and audience.',
       color: 'neon-magenta'
     },
     {
       icon: '▸',
-      title: 'CUSTOMIZABLE',
-      description: '> FINE-TUNE tone, style, and audience for every piece of content.',
+      title: 'LIGHTNING_FAST',
+      description: '> Generate content in seconds, not hours.',
       color: 'neon-cyan'
     }
   ];
