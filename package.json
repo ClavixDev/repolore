@@ -1,0 +1,30 @@
+{
+  "name": "repolore",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Claude Code skills that transform git commits into content",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "cd apps/website && npm run build",
+    "dev": "cd apps/website && npm run dev",
+    "preview": "cd apps/website && npm run preview"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
+  },
+  "keywords": [
+    "claude-code",
+    "skills",
+    "git",
+    "content-generation",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/repolore.git"
+  }
+}

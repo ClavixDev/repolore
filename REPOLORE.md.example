@@ -1,0 +1,44 @@
+---
+project: MyProject
+tone: technical_but_accessible
+audience: developers
+seo_pillars:
+  - ai-assisted development
+  - developer productivity
+  - open source tools
+twitter_handle: "@myhandle"
+devto_tags:
+  - javascript
+  - webdev
+  - tutorial
+newsletter_from: "Your Name"
+---
+
+# Project Context
+
+Brief description of what this project does. This helps Repolore skills understand
+your project for better content generation.
+
+Example:
+"MyProject is a CLI tool that automates content generation from git commits.
+It helps indie developers and open source maintainers create technical blog posts,
+social media updates, and changelog entries without manual effort."
+
+# Key Features
+
+- Feature 1: Description of what it does
+- Feature 2: Description of what it does
+- Feature 3: Description of what it does
+
+# Target Audience
+
+Describe your ideal reader/user. Example:
+"Indie developers, open source maintainers, and technical founders who want to
+share their work but struggle with content creation."
+
+# Brand Voice
+
+Describe how you want to sound. Example:
+"Technical but accessible. We explain complex topics simply without dumbing them
+down. Professional but not corporate. We sound like a smart colleague explaining
+something over coffee."
