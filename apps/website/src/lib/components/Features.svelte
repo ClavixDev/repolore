@@ -120,7 +120,7 @@
         <h3 class="text-lg font-mono text-neon-green uppercase tracking-wider">// Content_Skills</h3>
         <div class="h-px flex-1 bg-gradient-to-r from-transparent via-neon-green/30 to-transparent"></div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {#each contentSkills as feature, i}
           <div
             class="p-6 bg-bg-void border border-neon-green/20 hover:border-neon-green/60 transition-all duration-200 hover:-translate-y-1 group relative"
