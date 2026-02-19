@@ -116,6 +116,51 @@ feat: add GDPR-compliant cookie consent modal
   const xOutput = `Added a GDPR-compliant cookie consent modal to the Edgeplate marketing site. Accept All / Required Only, analytics toggle, dark theme, keyboard accessible. Smooth CSS transitions. Reopenable from the Privacy page for users who want to adjust preferences.
 
 #276 chars`;
+
+  const linkedinCommitInput = `commit 0ff8298
+Author: Mike <mike@example.com>
+Date:   Wed Feb 19 10:30:00 2026 +0100
+
+feat(cookie-banner): add informational cookie banner to landing and privacy pages
+
+- Cookie-free analytics tool now has a cookie banner (the irony)
+- Explains why we don't store cookies instead of just blocking them
+- Links to privacy policy for transparency
+
+ src/components/CookieBanner.tsx | 89 +++++++++++
+ src/pages/landing.tsx           | 12 ++
+ src/pages/privacy.tsx           |  8 ++
+ 3 files changed, 109 insertions(+)
+
+commit 9a4b7c2
+Author: Mike <mike@example.com>
+Date:   Wed Feb 19 09:15:00 2026 +0100
+
+feat(dashboard): add UTM toggle button and conditional rendering
+
+- Users can now toggle UTM parameter display in shared dashboards
+- Properly converts show_utms from database integer to boolean
+- Form validation handles boolean parsing from form data
+
+ src/components/ShareSettings.tsx | 45 +++++
+ src/lib/share.ts                 | 23 ++-
+ 2 files changed, 56 insertions(+), 12 deletions(-)`;
+
+  const linkedinOutput = `Sometimes the best feature is the one you add begrudgingly.
+
+GDPRmetrics is a privacy-focused analytics platform. It doesn't store cookies. It doesn't track users across sessions. It doesn't sell data to brokers.
+
+Yet I just added a cookie banner.
+
+Not because we need one — because visitors expect one. When people don't see a cookie notice on a site with "GDPR" in the name, they get suspicious. So the banner explains what we don't do instead of asking for permission to do something we never did.
+
+Also shipped this week: a UTM toggle for shared dashboards (so you can hide marketing parameters when sharing with clients) and a mobile navigation fix for the FAQ section that was causing overflow on small screens.
+
+The small polish matters. Users notice when scroll behavior is smooth and settings actually persist.
+
+What "unnecessary" features have you added because user expectations demanded them?
+
+#GDPR #WebAnalytics #PrivacyFirst`;
 </script>
 
 <section id="examples" class="py-32 bg-bg-void relative">
@@ -229,6 +274,38 @@ feat: add GDPR-compliant cookie consent modal
           <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-yellow/60"></div>
 
           <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-yellow">{xOutput}</span></pre>
+        </div>
+      </div>
+
+      <!-- Input: Git Commit (LinkedIn) -->
+      <div class="relative group">
+        <div class="absolute -top-3 left-4 px-2 bg-bg-void font-mono text-xs text-neon-cyan uppercase tracking-wider z-10">
+          // Input: git log
+        </div>
+        <div class="bg-bg-card border border-neon-cyan/30 p-6 h-full relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-cyan/60"></div>
+          <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-cyan/60"></div>
+          <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-cyan/60"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-cyan/60"></div>
+
+          <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-cyan">$</span> <span class="text-fg-primary">git log --stat -1</span>
+
+<span class="text-neon-green">{linkedinCommitInput}</span></pre>
+        </div>
+      </div>
+
+      <!-- Output: LinkedIn Post -->
+      <div class="relative group">
+        <div class="absolute -top-3 left-4 px-2 bg-bg-void font-mono text-xs text-neon-blue uppercase tracking-wider z-10">
+          // Output: repolore-linkedin
+        </div>
+        <div class="bg-bg-card border border-neon-blue/30 p-6 h-full relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-blue/60"></div>
+          <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-blue/60"></div>
+          <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-blue/60"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-blue/60"></div>
+
+          <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-blue">{linkedinOutput}</span></pre>
         </div>
       </div>
     </div>
