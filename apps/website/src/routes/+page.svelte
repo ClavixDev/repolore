@@ -164,7 +164,7 @@
         </a>
         <a
           href="/#features"
-          class="px-8 py-4 border-2 border-neon-magenta/50 text-neon-magenta font-mono uppercase tracking-wider chamfer-sm hover:bg-neon-magenta hover:text-void transition-all duration-150"
+          class="px-8 py-4 border-2 border-neon-magenta/50 text-neon-magenta font-mono uppercase tracking-wider chamfer-sm hover:bg-neon-magenta hover:text-bg-void transition-all duration-150"
         >
           View_Features
         </a>
