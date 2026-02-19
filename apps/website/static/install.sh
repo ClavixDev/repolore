@@ -20,16 +20,19 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# All available skills
+# BEGIN ALL_SKILLS
 ALL_SKILLS=(
     "repolore-blog"
-    "repolore-x"
-    "repolore-linkedin"
-    "repolore-reddit"
     "repolore-changelog"
     "repolore-devto"
+    "repolore-init"
+    "repolore-linkedin"
     "repolore-newsletter"
+    "repolore-reddit"
+    "repolore-x"
+    "using-repolore"
 )
+# END ALL_SKILLS
 
 print_banner() {
     echo -e "${BLUE}"
@@ -171,7 +174,7 @@ main() {
     echo ""
     if [ "${SKILLS_DIR}" = "${DEFAULT_SKILLS_DIR}" ]; then
         echo "Usage (Claude Code):"
-        echo "  /load skill repolore-blog"
+        echo "  /repolore-blog"
     else
         echo -e "${YELLOW}Note: Skills installed to custom directory${NC}"
         echo "Make sure your agent system is configured to read from:"

@@ -9,7 +9,7 @@
 1. [Project Overview](#project-overview)
 2. [Architecture](#architecture)
 3. [Installation](#installation)
-4. [All 8 Skills](#all-8-skills)
+4. [All 9 Skills](#all-9-skills)
 5. [REPOLORE.md Specification](#repoloremd-specification)
 6. [Configuration Options](#configuration-options)
 7. [Output Formats](#output-formats)
@@ -99,7 +99,7 @@ curl -sL https://repolore.dev/install.sh | bash -s -- /path/to/custom/dir
 git clone https://github.com/ClavixDev/repolore.git
 
 # Copy skills to Claude Code skills directory
-cp -r repolore/skills/* ~/.claude/skills/
+cp -r repolore/_skills/* ~/.claude/skills/
 
 # Or use the install script with custom path
 ./repolore/apps/website/static/install.sh /custom/path
@@ -109,12 +109,12 @@ cp -r repolore/skills/* ~/.claude/skills/
 
 ```bash
 ls ~/.claude/skills/repolore-*
-# Should show all 8 skill directories
+# Should show all 9 skill directories
 ```
 
 ---
 
-## All 8 Skills
+## All 9 Skills
 
 ### 1. repolore-blog
 
@@ -122,7 +122,7 @@ Generate SEO-optimized technical blog posts from git commits.
 
 **Usage:**
 ```
-/load skill repolore-blog
+/repolore-blog
 
 "Analyze my last 3 commits and write a blog post"
 "Write a blog post about the auth improvements between v1.0 and v1.1"
@@ -145,7 +145,7 @@ Create Keep a Changelog formatted entries.
 
 **Usage:**
 ```
-/load skill repolore-changelog
+/repolore-changelog
 
 "Generate changelog for the latest release"
 "What changed since v1.0.0?"
@@ -166,7 +166,7 @@ Generate Twitter/X threads and single tweets.
 
 **Usage:**
 ```
-/load skill repolore-x
+/repolore-x
 
 "Create a thread about my latest feature"
 "Write a tweet about the performance improvements"
@@ -188,7 +188,7 @@ Create professional LinkedIn posts.
 
 **Usage:**
 ```
-/load skill repolore-linkedin
+/repolore-linkedin
 
 "Write a LinkedIn post about the new release"
 "Create a professional update about my API improvements"
@@ -210,7 +210,7 @@ Generate discussion-focused Reddit posts.
 
 **Usage:**
 ```
-/load skill repolore-reddit
+/repolore-reddit
 
 "Write a Reddit post about this feature for r/webdev"
 "Create a discussion post about my architecture changes"
@@ -232,7 +232,7 @@ Generate dev.to optimized articles.
 
 **Usage:**
 ```
-/load skill repolore-devto
+/repolore-devto
 
 "Write a dev.to article about my React hooks"
 "Create a tutorial post from my recent commits"
@@ -254,7 +254,7 @@ Create email newsletters.
 
 **Usage:**
 ```
-/load skill repolore-newsletter
+/repolore-newsletter
 
 "Write a newsletter issue about this week's changes"
 "Create an email update for my subscribers"
@@ -276,7 +276,7 @@ Initialize REPOLORE.md configuration.
 
 **Usage:**
 ```
-/load skill repolore-init
+/repolore-init
 
 "Initialize repolore for this project"
 "Create REPOLORE.md for my repository"
@@ -289,6 +289,25 @@ Initialize REPOLORE.md configuration.
 - Collects project context
 - Generates configuration file
 - Sets up content generation workflow
+
+---
+
+### 9. using-repolore
+
+Parent skill loaded by all content-generating skills. Provides voice rules, anti-AI-slop guardrails, git analysis patterns, and file saving conventions.
+
+**Usage:**
+```
+/using-repolore
+```
+
+This skill is loaded automatically by content skills. You don't typically invoke it directly.
+
+**Purpose:**
+- Enforces consistent voice and tone across all content
+- Provides banned patterns list (AI tells, hype words, filler openers)
+- Defines git analysis commands
+- Manages file saving to .repolore/ directory
 
 ---
 

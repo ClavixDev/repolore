@@ -82,13 +82,13 @@
           </button>
         </div>
 
-        <div class="mt-6 font-mono text-sm text-fg-muted mb-4">Then load a skill:</div>
+        <div class="mt-6 font-mono text-sm text-fg-muted mb-4">Then invoke a skill:</div>
         <div class="relative group">
           <div class="bg-bg-void p-4 pr-12 font-mono text-sm">
-            <span class="text-neon-cyan">/load</span> <span class="text-fg-primary">skill</span> <span class="text-neon-green">repolore-blog</span>
+            <span class="text-neon-green">/repolore-blog</span>
           </div>
           <button
-            onclick={() => copyToClipboard('/load skill repolore-blog', 'loadskill')}
+            onclick={() => copyToClipboard('/repolore-blog', 'loadskill')}
             class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-bg-card border border-neon-green/30 text-neon-green hover:border-neon-green hover:bg-neon-green/10 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100"
             aria-label="Copy command"
           >

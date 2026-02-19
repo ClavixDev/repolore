@@ -4,9 +4,9 @@
 
 ## What is RepoLore?
 
-RepoLore is a collection of 8 agentic skills that help developers create content from their git history. Instead of staring at a blank page after shipping features, RepoLore analyzes your commits and generates ready-to-publish content.
+RepoLore is a collection of 9 agentic skills that help developers create content from their git history. Instead of staring at a blank page after shipping features, RepoLore analyzes your commits and generates ready-to-publish content.
 
-## The 8 Skills
+## The 9 Skills
 
 1. **repolore-blog** - Long-form technical blog posts (800-1500 words)
 2. **repolore-changelog** - Keep a Changelog format entries
@@ -16,6 +16,7 @@ RepoLore is a collection of 8 agentic skills that help developers create content
 6. **repolore-devto** - Dev.to articles with YAML frontmatter
 7. **repolore-newsletter** - Email newsletters with subject/preview/body
 8. **repolore-init** - Initialize REPOLORE.md configuration
+9. **using-repolore** - Parent skill — voice rules, project context, shared conventions
 
 ## Quick Install
 
@@ -30,10 +31,10 @@ curl -sL https://repolore.dev/install.sh | bash -s -- ~/.my-skills
 
 ## Basic Usage
 
-After installation, load any skill in Claude Code:
+After installation, invoke any skill:
 
 ```
-/load skill repolore-blog
+/repolore-blog
 
 # Then ask:
 "Write a blog post about my last 5 commits"
@@ -76,4 +77,4 @@ How you want your content to sound...
 
 - Website: https://repolore.dev
 - GitHub: https://github.com/ClavixDev/repolore
-- Documentation: https://github.com/ClavixDev/repolore/tree/main/skills
+- Documentation: https://github.com/ClavixDev/repolore/tree/main/_skills

@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "cd apps/website && npm run build",
+    "build": "bash scripts/sync-skills.sh && cd apps/website && npm run build",
     "dev": "cd apps/website && npm run dev",
     "preview": "cd apps/website && npm run preview"
   },

@@ -106,10 +106,6 @@ curl -fsSL repolore.com/install | bash -s -- -d ~/.config/agents/skills blog
 
 Make sure your agent system is configured to read from the specified directory.
 
-## Website
-
-Visit [repolore.com](https://repolore.com) for documentation and examples.
-
 ## Contributing
 
 Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
