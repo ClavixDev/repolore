@@ -13,6 +13,7 @@
   --color-neon-magenta: #ff00ff;
   --color-neon-cyan: #00d4ff;
   --color-neon-red: #ff3366;
+  --color-neon-yellow: #ffff00;
 
   /* Aliases for compatibility */
   --color-bg-base: var(--color-bg-void);

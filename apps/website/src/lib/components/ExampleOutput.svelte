@@ -95,6 +95,27 @@ for (const integration of integrations.locations) {
 Now running \`clavix clean\` removes everything Clavix created in one go, regardless of which AI tool you're using.
 
 How do you handle cleanup for tools that inject files into multiple IDE/plugin locations? Is there a better pattern than maintaining a static list of paths?`;
+
+  const xCommitInput = `commit 7f9668c
+Author: Mike <mike@edgeplate.com>
+Date:   Wed Feb 19 12:00:00 2026 +0100
+
+feat: add GDPR-compliant cookie consent modal
+
+- Add cookie consent modal with Accept All / Required Only options
+- Analytics toggle with separate opt-in
+- Dark theme with smooth CSS transitions
+- Keyboard accessible (Escape to close)
+- Reopenable from Privacy page
+
+ src/components/CookieConsent.astro    | 245 +++++++++++
+ src/pages/privacy.md                  |  12 +
+ src/styles/cookie-consent.css         |  89 ++++
+ 3 files changed, 346 insertions(+)`;
+
+  const xOutput = `Added a GDPR-compliant cookie consent modal to the Edgeplate marketing site. Accept All / Required Only, analytics toggle, dark theme, keyboard accessible. Smooth CSS transitions. Reopenable from the Privacy page for users who want to adjust preferences.
+
+#276 chars`;
 </script>
 
 <section id="examples" class="py-32 bg-bg-void relative">
@@ -176,6 +197,38 @@ How do you handle cleanup for tools that inject files into multiple IDE/plugin l
           <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-magenta/60"></div>
 
           <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-magenta">{redditOutput}</span></pre>
+        </div>
+      </div>
+
+      <!-- Input: Git Commit (X) -->
+      <div class="relative group">
+        <div class="absolute -top-3 left-4 px-2 bg-bg-void font-mono text-xs text-neon-cyan uppercase tracking-wider z-10">
+          // Input: git log
+        </div>
+        <div class="bg-bg-card border border-neon-cyan/30 p-6 h-full relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-cyan/60"></div>
+          <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-cyan/60"></div>
+          <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-cyan/60"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-cyan/60"></div>
+
+          <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-cyan">$</span> <span class="text-fg-primary">git log --stat -1</span>
+
+<span class="text-neon-green">{xCommitInput}</span></pre>
+        </div>
+      </div>
+
+      <!-- Output: X/Twitter Post -->
+      <div class="relative group">
+        <div class="absolute -top-3 left-4 px-2 bg-bg-void font-mono text-xs text-neon-yellow uppercase tracking-wider z-10">
+          // Output: repolore-x
+        </div>
+        <div class="bg-bg-card border border-neon-yellow/30 p-6 h-full relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-yellow/60"></div>
+          <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-yellow/60"></div>
+          <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-yellow/60"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-yellow/60"></div>
+
+          <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-yellow">{xOutput}</span></pre>
         </div>
       </div>
     </div>
