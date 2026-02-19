@@ -242,6 +242,9 @@ What "unnecessary" features have you added because user expectations demanded th
           <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-magenta/60"></div>
 
           <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-magenta">{redditOutput}</span></pre>
+          <a href="https://clavix.dev/" target="_blank" rel="noopener noreferrer" class="block mt-3 font-mono text-xs text-fg-muted hover:text-neon-magenta transition-colors">
+            → clavix.dev
+          </a>
         </div>
       </div>
 
@@ -274,6 +277,9 @@ What "unnecessary" features have you added because user expectations demanded th
           <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-yellow/60"></div>
 
           <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-yellow">{xOutput}</span></pre>
+          <a href="https://edgeplate.com/" target="_blank" rel="noopener noreferrer" class="block mt-3 font-mono text-xs text-fg-muted hover:text-neon-yellow transition-colors">
+            → edgeplate.com
+          </a>
         </div>
       </div>
 
@@ -306,6 +312,9 @@ What "unnecessary" features have you added because user expectations demanded th
           <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-blue/60"></div>
 
           <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-blue">{linkedinOutput}</span></pre>
+          <a href="https://gdprmetrics.com/" target="_blank" rel="noopener noreferrer" class="block mt-3 font-mono text-xs text-fg-muted hover:text-neon-blue transition-colors">
+            → gdprmetrics.com
+          </a>
         </div>
       </div>
     </div>
