@@ -50,9 +50,54 @@ The \`allowed-tools\` frontmatter replaced the old "Tools
 Used" sections. Instead of documenting that a skill uses
 \`git log\`, the frontmatter declares \`Bash(git:*)\` and
 the agent runtime enforces it.`;
+
+  const redditCommitInput = `commit 26eaf34
+Author: clavix <noreply@clavix.com>
+Date:   Wed Feb 19 10:15:00 2026 +0100
+
+feat: add clavix clean command with dynamic integration discovery (v7.3.0)
+
+- Add new \`clavix clean\` command
+- Fixes process hanging issue with explicit exit handling
+- Dynamic integration discovery from integrations.json
+- Detects all 20+ integration command/skill locations
+
+ src/commands/clean.ts     | 45 +++++++++++---
+ src/lib/integrations.ts   | 78 +++++++++++++++++++
+ integrations.json        | 12 ++++
+ 3 files changed, 125 insertions(+), 10 deletions(-)`;
+
+  const redditOutput = `Suggested Subreddit: r/programming
+
+Title: I built a CLI tool that cleans up after itself — dynamically detecting 20+ AI tool integrations
+
+Body:
+
+I've been working on Clavix, a CLI that provides prompt workflow templates for AI coding tools. One problem I kept running into: it creates skills, prompts, and config files scattered across different locations depending on which AI tool you're using (Claude Code, Cursor, Windsurf, etc.).
+
+So I added a \`clavix clean\` command that:
+- Dynamically discovers where each AI tool stores integrations
+- Reads from an \`integrations.json\` config to find 20+ command/skill locations
+- Cleans project-local \`.skills/\` directories
+- Uses pattern-based file matching to find all artifact types
+
+The tricky part was handling process cleanup — the CLI would hang if I didn't explicitly call \`process.exit()\` after cleaning. Had to add explicit exit handling and guards to prevent partial cleanup if something went wrong mid-run.
+
+\`\`\`typescript
+// Pattern-based discovery from integrations.json
+const integrations = await loadIntegrations();
+for (const integration of integrations.locations) {
+  const files = await glob(integration.pattern, { cwd: integration.root });
+  // ... clean files
+}
+\`\`\`
+
+Now running \`clavix clean\` removes everything Clavix created in one go, regardless of which AI tool you're using.
+
+Discussion prompt: How do you handle cleanup for tools that inject files into multiple IDE/plugin locations? Is there a better pattern than maintaining a static list of paths?`;
 </script>
 
-<section class="py-32 bg-bg-void relative">
+<section id="examples" class="py-32 bg-bg-void relative">
   <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-green/50 to-transparent"></div>
 
   <div class="max-w-7xl mx-auto px-6">
@@ -99,6 +144,38 @@ the agent runtime enforces it.`;
           <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-green/60"></div>
 
           <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-green">{blogOutput}</span></pre>
+        </div>
+      </div>
+
+      <!-- Input: Git Commit (Reddit) -->
+      <div class="relative group">
+        <div class="absolute -top-3 left-4 px-2 bg-bg-void font-mono text-xs text-neon-cyan uppercase tracking-wider z-10">
+          // Input: git log
+        </div>
+        <div class="bg-bg-card border border-neon-cyan/30 p-6 h-full relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-cyan/60"></div>
+          <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-cyan/60"></div>
+          <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-cyan/60"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-cyan/60"></div>
+
+          <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-cyan">$</span> <span class="text-fg-primary">git log --stat -1</span>
+
+<span class="text-neon-green">{redditCommitInput}</span></pre>
+        </div>
+      </div>
+
+      <!-- Output: Reddit Post -->
+      <div class="relative group">
+        <div class="absolute -top-3 left-4 px-2 bg-bg-void font-mono text-xs text-neon-magenta uppercase tracking-wider z-10">
+          // Output: repolore-reddit
+        </div>
+        <div class="bg-bg-card border border-neon-magenta/30 p-6 h-full relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-magenta/60"></div>
+          <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-magenta/60"></div>
+          <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-magenta/60"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-magenta/60"></div>
+
+          <pre class="font-mono text-xs sm:text-sm text-fg-muted whitespace-pre-wrap leading-relaxed"><span class="text-neon-magenta">{redditOutput}</span></pre>
         </div>
       </div>
     </div>
