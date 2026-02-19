@@ -131,7 +131,7 @@ feat: add GDPR-compliant cookie consent modal
         <span class="text-neon-magenta text-glow">TO_CONTENT</span>
       </h2>
       <p class="text-xl text-fg-muted max-w-2xl mx-auto font-mono">
-        > Real output from running <code class="text-neon-green">repolore-blog</code> against this repo<span class="text-neon-magenta cursor-blink"></span>
+        > Real output from running <code class="text-neon-green">Repolore Skills</code> against this and other repositories<span class="text-neon-magenta cursor-blink"></span>
       </p>
     </div>
 
