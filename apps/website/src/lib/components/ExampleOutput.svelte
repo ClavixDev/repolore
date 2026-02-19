@@ -94,7 +94,7 @@ for (const integration of integrations.locations) {
 
 Now running \`clavix clean\` removes everything Clavix created in one go, regardless of which AI tool you're using.
 
-Discussion prompt: How do you handle cleanup for tools that inject files into multiple IDE/plugin locations? Is there a better pattern than maintaining a static list of paths?`;
+How do you handle cleanup for tools that inject files into multiple IDE/plugin locations? Is there a better pattern than maintaining a static list of paths?`;
 </script>
 
 <section id="examples" class="py-32 bg-bg-void relative">
