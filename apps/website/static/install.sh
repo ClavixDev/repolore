@@ -66,6 +66,9 @@ install_skill() {
 
     echo -e "${BLUE}Installing ${skill}...${NC}"
 
+    # Delete existing repolore skill directory for clean reinstall
+    rm -rf "${skill_dir}"
+
     # Create skill directory
     mkdir -p "${skill_dir}"
 
