@@ -1,159 +1,55 @@
+---
+name: repolore-changelog
+description: Generate Keep a Changelog formatted entries from git commits. Use when the user asks for changelog entries, version release notes, or wants to update CHANGELOG.md based on recent commits.
+allowed-tools: Bash(git:*) Read create_file edit_file
+---
+
 # Repolore Changelog
 
-Generate Keep a Changelog formatted entries from your git commits.
+Load the `using-repolore` skill first for project context and conventions.
 
-## Usage
+## What This Produces
 
-```
-/load skill repolore-changelog
-
-# Generate for recent commits
-Write a changelog entry for my last 5 commits
-
-# Generate for a version
-Create changelog entry for v1.2.0
-
-# Preview before release
-What would the changelog look like for changes since v1.0?
-```
-
-## Requirements
-
-- Git repository with commit history
-- Optional: REPOLORE.md for project context
+A changelog entry following [Keep a Changelog](https://keepachangelog.com/) format. Grouped by category, written in imperative mood, with specific references to what actually changed.
 
 ## Workflow
 
-1. **Analyze commits** - Uses `git log` and `git diff`
-2. **Categorize changes** - Groups into Added/Changed/Fixed/Removed/Deprecated/Security
-3. **Generate entry** - Creates Keep a Changelog format
-4. **Present for review**
-5. **Append to CHANGELOG.md** or save to file (`.repolore/changelog/repolore-changelog-YYYMMDD-HHMMSS.md`)
+1. Load REPOLORE.md for project context
+2. Analyze commits with `git log` and `git diff`
+3. Check for an existing `CHANGELOG.md` to match its style and version scheme
+4. Ask for the version number (or use date-based if no versioning scheme exists)
+5. Generate the entry, present for review
+6. On approval: append to `CHANGELOG.md` or save to `.repolore/changelog/`
 
-## Output Format
-
-Follows [Keep a Changelog](https://keepachangelog.com/) convention:
+## Entry Format
 
 ```markdown
-## [1.2.0] - 2024-01-15
-
-### Added
-- New feature descriptions
-
-### Changed
-- Change descriptions
-
-### Fixed
-- Bug fix descriptions
-
-### Removed
-- Removed feature descriptions
-
-### Deprecated
-- Deprecated feature descriptions
-
-### Security
-- Security-related changes
-```
-
-### Rules
-- Use imperative mood ("Add support for..." not "Added support for...")
-- Be specific: include function names, API endpoints, config options
-- Each entry is one line, concise but descriptive
-- Group by category (Added/Changed/Fixed/Removed/Deprecated/Security)
-- Reference PR/commit if available
-- Omit empty sections
-
-## REPOLORE.md Support
-
-Create a `REPOLORE.md` in your repo root:
-
-```yaml
----
-project: MyProject
----
-```
-
-## Tools Used
-
-- `Bash` - For git operations
-- `Read` - For existing CHANGELOG.md and REPOLORE.md
-- `Write` - For appending to CHANGELOG.md
-
----
-
-## System Prompt
-
-You are RepoLore, writing changelog entries for developer tools.
-
-### Format (Keep Changelog convention)
-```
 ## [VERSION] - YYYY-MM-DD
 
 ### Added
-- New feature descriptions
+- Add support for WebSocket connections in the auth module
 
 ### Changed
-- Change descriptions
+- Switch token validation from symmetric to asymmetric keys
 
 ### Fixed
-- Bug fix descriptions
+- Fix race condition in session cleanup on concurrent logouts
 
 ### Removed
-- Removed feature descriptions
+- Remove deprecated v1 API endpoints
 
 ### Deprecated
-- Deprecated feature descriptions
+- Deprecate `legacy_auth()` in favor of `authenticate()`
 
 ### Security
-- Security-related changes
+- Upgrade bcrypt from 5.0.0 to 5.1.0 to patch CVE-2024-XXXXX
 ```
 
-### Rules
-- Use imperative mood ("Add support for..." not "Added support for...")
-- Be specific: include function names, API endpoints, config options
-- Each entry is one line, concise but descriptive
-- Group by category (Added/Changed/Fixed/Removed/Deprecated/Security)
-- Reference PR/commit if available
-- Omit empty sections
-- Only include categories that have actual changes
+## Rules
 
----
-
-## Implementation
-
-When the user asks for a changelog entry:
-
-1. **Gather git history** using Bash:
-   ```bash
-   git log --oneline -n 10
-   ```
-
-2. **Get the diff** for the relevant commits:
-   ```bash
-   git diff HEAD~5 HEAD
-   ```
-
-3. **Check for existing CHANGELOG.md** to understand format
-
-4. **Ask for version number** (or use date-based version)
-
-5. **Generate the changelog entry** following Keep a Changelog format
-
-6. **Present for review**
-
-7. **Ask user**:
-   - Append to CHANGELOG.md
-   - Save to new file in `.repolore/changelog/`
-   - Copy to clipboard
-
-8. **If saving to file**:
-   - Ensure `.repolore/changelog` directory exists and is gitignored:
-     ```bash
-     mkdir -p .repolore/changelog
-     echo ".repolore/" >> .gitignore 2>/dev/null || true
-     ```
-   - Generate unique ID for filename (timestamp-based: YYYMMDD-HHMMSS)
-   - Save to file using Write tool: `.repolore/changelog/repolore-changelog-{timestamp}.md`
-
-9. **If appending**, read existing CHANGELOG.md first, then write updated version
+- Imperative mood: "Add support for..." not "Added support for..."
+- Be specific: name functions, endpoints, config options, error codes
+- One line per entry, concise but descriptive
+- Only include categories that have actual changes — omit empty sections
+- Reference PR or commit hash when available
+- Do not editorialize. State what changed, not why it's great.

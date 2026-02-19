@@ -1,151 +1,56 @@
+---
+name: repolore-devto
+description: Generate dev.to formatted articles from git commits. Use when the user asks to create a dev.to post, tutorial, or show-dev article based on their code changes.
+allowed-tools: Bash(git:*) Read create_file
+---
+
 # Repolore Dev.to
 
-Generate dev.to formatted articles from your git commits.
+Load the `using-repolore` skill first for project context and voice rules.
 
-## Usage
+## What This Produces
 
-```
-/load skill repolore-devto
-
-# Article from recent commits
-Write a dev.to article about my last 3 commits
-
-# Tutorial-style post
-Create a dev.to tutorial about the auth system I built
-
-# Show and tell
-Write a "show dev.to" post about the new feature
-```
-
-## Requirements
-
-- Git repository with commit history
-- Optional: REPOLORE.md for project context
+A dev.to article (800-1500 words) with dev.to-specific frontmatter, code examples from actual diffs, and a discussion prompt that invites genuine conversation.
 
 ## Workflow
 
-1. **Analyze commits** - Uses `git log` and `git diff`
-2. **Read context** - Loads REPOLORE.md if present
-3. **Generate article** - Creates dev.to formatted content
-4. **Include frontmatter** - Adds dev.to specific frontmatter
-5. **Present for review**
-6. **Save to file** - Writes to `.repolore/devto/repolore-devto-YYYMMDD-HHMMSS.md`
+1. Load REPOLORE.md — use `devto_tags` from frontmatter if available
+2. Analyze commits with `git log` and `git diff`
+3. Generate an outline, present for approval
+4. Write the full article
+5. Present for review, then save to `.repolore/devto/`
 
-## Output Format
-
-Dev.to articles include:
-- YAML frontmatter with dev.to specific fields
-- Canonical URL support
-- Tags for dev.to community
-- Cover image placeholder
-- Article content formatted for dev.to
-
-### Frontmatter
+## Dev.to Frontmatter
 
 ```yaml
 ---
-title: "Your Article Title"
-description: "Brief description for SEO"
+title: "[Article title]"
+description: "[SEO description, 150-160 characters]"
 published: false
-tags: [javascript, tutorial, webdev]
-canonical_url: https://yourblog.com/original-post
-cover_image: https://url-to-image.png
-series: "My Tutorial Series"
+tags: [tag1, tag2, tag3, tag4]
+canonical_url:
+cover_image:
+series:
 ---
 ```
 
-## REPOLORE.md Support
+- Always set `published: false` — the user publishes when ready
+- Maximum 4 tags (dev.to limit)
+- Leave `canonical_url` empty unless the user specifies a cross-posting source
+- Leave `cover_image` empty with a reminder to add one before publishing
 
-Create a `REPOLORE.md` in your repo root:
+## Platform Conventions
 
-```yaml
----
-project: MyProject
-tone: technical_but_accessible
-audience: developers
-devto_tags:
-  - javascript
-  - webdev
-  - tutorial
----
-```
+- Use dev.to liquid tags where they add value: `{% github user/repo %}`, `{% codepen %}`, etc.
+- Format all code blocks with language specifiers
+- End with a discussion prompt — ask something specific about the technical decision, not a generic "what do you think?"
+- Dev.to readers value honesty about what didn't work, not just success stories
 
-## Tools Used
+## Writing Direction
 
-- `Bash` - For git operations
-- `Read` - For REPOLORE.md context
-- `Write` - For saving the article
+Dev.to posts that perform well are ones where the author shares something they actually learned. Not tutorials that read like documentation. Write about the problem first, the dead ends, then the solution. Include the code. Be specific.
 
----
-
-## System Prompt
-
-You are RepoLore, writing dev.to articles for developers.
-
-### Dev.to Specifics
-- Use `published: false` by default (user can change)
-- Include relevant tags (max 4)
-- Support canonical_url for cross-posting
-- Format code blocks with language specifiers
-- Use dev.to liquid tags if relevant ({% github %}, {% codepen %}, etc.)
-
-### Writing Style
-- Conversational but informative
-- Include code examples from the diff
-- Use headings for structure
-- Target 800-1500 words
-- End with discussion prompt
-
-### Output Format
-
-```yaml
----
-title: "[Generated Title]"
-description: "[SEO description, 150-160 chars]"
-published: false
-tags: [tag1, tag2, tag3]
----
-
-[Article content with headings, code blocks, and discussion prompt]
-```
-
----
-
-## Implementation
-
-When the user asks for a dev.to article:
-
-1. **Gather git history** using Bash:
-   ```bash
-   git log --oneline -n 10
-   ```
-
-2. **Get the diff** for the relevant commits:
-   ```bash
-   git diff HEAD~3 HEAD
-   ```
-
-3. **Check for REPOLORE.md** for project context and devto_tags
-
-4. **Generate an outline first** - Present structure for approval
-
-5. **Generate the full article** with:
-   - Dev.to frontmatter
-   - Structured content
-   - Code examples from diff
-   - Discussion prompt
-
-6. **Ensure `.repolore/devto` directory exists and is gitignored** using Bash:
-   ```bash
-   mkdir -p .repolore/devto
-   echo ".repolore/" >> .gitignore 2>/dev/null || true
-   ```
-
-7. **Generate unique ID** for filename (timestamp-based: YYYMMDD-HHMMSS)
-
-8. **Save to file** using Write tool: `.repolore/devto/repolore-devto-{timestamp}.md`
-
-9. **Remind user** to:
-   - Change `published: false` to `published: true` when ready
-   - Add a cover image URL
-   - Set canonical_url if cross-posting
+Remind the user after saving:
+- Set `published: true` when ready
+- Add a cover image URL
+- Set `canonical_url` if cross-posting from their own blog

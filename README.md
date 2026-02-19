@@ -17,7 +17,7 @@ curl -fsSL repolore.com/install | bash -s -- blog x linkedin
 Then in Claude Code:
 
 ```
-/load skill repolore-blog
+/repolore-blog
 analyze my last 3 commits
 ```
 
@@ -25,6 +25,8 @@ analyze my last 3 commits
 
 | Skill | Description |
 |-------|-------------|
+| `using-repolore` | Core skill — voice rules, project context, shared conventions |
+| `repolore-init` | Initialize REPOLORE.md configuration for a project |
 | `repolore-blog` | Long-form technical blog posts (800-1500 words) |
 | `repolore-x` | X/Twitter posts & threads |
 | `repolore-linkedin` | Professional LinkedIn posts |
@@ -35,8 +37,8 @@ analyze my last 3 commits
 
 ## How It Works
 
-1. **Load a skill** - `/load skill repolore-blog`
-2. **Point at commits** - "analyze my last 3 commits"
+1. **Invoke a skill** - `/repolore-blog` or just ask ("write a blog post about my last 3 commits")
+2. **Point at commits** - the skill analyzes your git history
 3. **Get content** - Review the outline, approve it, receive your content
 
 ## Configuration
@@ -82,9 +84,9 @@ curl -fsSL repolore.com/install | bash -s -- linkedin
 curl -fsSL repolore.com/install | bash -s -- blog x linkedin
 ```
 
-After installation, load skills in Claude Code:
+After installation, invoke skills in Claude Code:
 ```
-/load skill repolore-blog
+/repolore-blog
 ```
 
 ### Custom Directory (Generic Agents)

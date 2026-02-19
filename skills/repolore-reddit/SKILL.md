@@ -1,129 +1,46 @@
+---
+name: repolore-reddit
+description: Generate discussion-focused Reddit posts from git commits. Use when the user asks to write a Reddit post, share a project, or create a technical discussion post for Reddit.
+allowed-tools: Bash(git:*) Read create_file
+---
+
 # Repolore Reddit
 
-Generate discussion-focused Reddit posts from your git commits.
+Load the `using-repolore` skill first for project context and voice rules.
 
-## Usage
+## What This Produces
 
-```
-/load skill repolore-reddit
-
-# Post about a technical decision
-Write a Reddit post about why I chose Rust for this project
-
-# Share a solution
-Post about how I solved the caching problem in my last commit
-
-# Ask for feedback
-Write a Reddit post asking for feedback on my new CLI design
-```
-
-## Requirements
-
-- Git repository with commit history
-- Optional: REPOLORE.md for project context
+A Reddit post that prioritizes technical discussion value over self-promotion. Includes a subreddit recommendation, descriptive title, and body with enough technical depth to invite real conversation.
 
 ## Workflow
 
-1. **Analyze commits** - Uses `git log` and `git show`
-2. **Read context** - Loads REPOLORE.md if present
-3. **Generate post** - Creates Reddit-formatted content
-4. **Suggest subreddit** - Recommends appropriate subreddit
-5. **Present for review**
-6. **Save to file** (`.repolore/reddit/repolore-reddit-YYYMMDD-HHMMSS.md`)
+1. Load REPOLORE.md — use `subreddits` from frontmatter if available
+2. Analyze commits with `git log` and `git show`
+3. Generate the post with subreddit recommendation
+4. Present for review, then save to `.repolore/reddit/`
 
-## Output Format
-
-Reddit posts include:
-- Technical focus with genuine discussion value
-- Context about what you built/changed
-- Specific technical details (not vague)
-- Question or discussion prompt
-- Appropriate tone for the subreddit
-
-## REPOLORE.md Support
-
-Create a `REPOLORE.md` in your repo root:
-
-```yaml
----
-project: MyProject
-tone: technical
-audience: developers
-subreddits:
-  - r/rust
-  - r/programming
-  - r/webdev
----
-```
-
-## Tools Used
-
-- `Bash` - For git operations
-- `Read` - For REPOLORE.md context
-- `Write` - For saving files to .repolore/
-
----
-
-## System Prompt
-
-You are RepoLore, writing Reddit posts for developers sharing technical work.
-
-### Rules
-- Focus on technical discussion value, not self-promotion
-- Include specific details: technologies used, trade-offs considered, lessons learned
-- Ask a genuine question or invite feedback
-- Match the tone of technical subreddits (informative, humble, detailed)
-- No clickbait titles
-- Include code snippets when relevant
-
-### Structure
-1. **Title**: Descriptive, not clickbait (e.g., "I built a zero-dependency CLI tool in Rust - here's what I learned about error handling")
-2. **Context**: What you built and why
-3. **Technical details**: Implementation details, trade-offs
-4. **Discussion prompt**: Question for the community
-
-### Output Format
+## Post Format
 
 ```
-**Suggested Subreddit**: r/[subreddit]
+Suggested Subreddit: r/[subreddit]
 
-**Title:**
-[Post title]
+Title: [Descriptive, not clickbait]
 
-**Body:**
-[Post body with technical details and discussion prompt]
+Body:
+[Technical content with discussion prompt]
 ```
 
----
+## Post Structure
 
-## Implementation
+1. **Title** — Descriptive and specific. Good: "I built a zero-dependency auth library in Go — here's how I handle token rotation without Redis." Bad: "Check out my new project!"
+2. **Context** — What you built and the problem it solves. Keep it tight.
+3. **Technical details** — Implementation decisions, tradeoffs, numbers. What technologies, why those over alternatives, what surprised you.
+4. **Discussion prompt** — Ask something specific. "How do you handle X in your projects?" works. "What do you think?" does not.
 
-When the user asks for a Reddit post:
+## Platform Rules
 
-1. **Gather git history** using Bash:
-   ```bash
-   git log --oneline -n 5
-   ```
-
-2. **Get commit details**:
-   ```bash
-   git show --stat HEAD
-   ```
-
-3. **Check for REPOLORE.md** for tone and suggested subreddits
-
-4. **Generate the post** with:
-   - Suggested subreddit
-   - Descriptive title
-   - Technical body with discussion value
-
-5. **Present for review** and ask if they want to save to file
-
-6. **If saving to file**:
-   - Ensure `.repolore/reddit` directory exists and is gitignored:
-     ```bash
-     mkdir -p .repolore/reddit
-     echo ".repolore/" >> .gitignore 2>/dev/null || true
-     ```
-   - Generate unique ID for filename (timestamp-based: YYYMMDD-HHMMSS)
-   - Save to file using Write tool: `.repolore/reddit/repolore-reddit-{timestamp}.md`
+- Reddit communities detect and punish self-promotion. Lead with the technical discussion, not the product pitch.
+- No marketing language. No "I'm excited to announce..."
+- Include code snippets when they support the discussion
+- Be upfront about limitations — Reddit respects honesty, punishes hype
+- Match the subreddit's culture: r/programming is different from r/webdev is different from r/rust

@@ -1,128 +1,46 @@
+---
+name: repolore-x
+description: Generate X/Twitter posts and threads from git commits. Use when the user asks to write a tweet, X post, or thread about their development work or code changes.
+allowed-tools: Bash(git:*) Read create_file
+---
+
 # Repolore X
 
-Generate punchy X/Twitter posts and threads from your git commits.
+Load the `using-repolore` skill first for project context and voice rules.
 
-## Usage
+## What This Produces
 
-```
-/load skill repolore-x
-
-# Single tweet from recent commits
-Write a tweet about my last commit
-
-# Thread for bigger changes
-Create a thread about the v2.0 release
-
-# Specific feature
-Tweet about the new auth system I just shipped
-```
-
-## Requirements
-
-- Git repository with commit history
-- Optional: REPOLORE.md for project context
+An X/Twitter post (max 280 characters) or thread (3-5 posts). Specific about what was built. Reads like a developer sharing genuine progress, not a marketing account pushing a product.
 
 ## Workflow
 
-1. **Analyze commits** - Uses `git log` and `git show` to understand changes
-2. **Read context** - Loads REPOLORE.md if present
-3. **Generate content** - Creates tweet or thread
-4. **Present for review** - Shows character count
-5. **Copy to clipboard** or save to file (`.repolore/x/repolore-x-YYYMMDD-HHMMSS.txt`)
+1. Load REPOLORE.md — use `twitter_handle` if available
+2. Analyze commits with `git log` and `git show`
+3. Generate tweet or thread
+4. Show character count for each post (hard limit: 280)
+5. Present for review, then save to `.repolore/x/`
 
-## Output Format
+## Single Post
 
-**Main Tweet:**
-- Max 280 characters
-- Punchy hook
-- Specific details (not generic)
-- Max 1 emoji
+Max 280 characters. Every character counts. Be specific — "fixed a race condition in the WebSocket reconnection logic" beats "made some improvements to the backend."
 
-**Thread (if applicable):**
-- 3-5 tweets
-- Numbered 1/, 2/, etc.
-- Each tweet under 280 chars
-- Narrative flow
+No emoji unless REPOLORE.md tone is `casual` and even then, one maximum.
 
-## REPOLORE.md Support
-
-Create a `REPOLORE.md` in your repo root for better results:
-
-```yaml
----
-project: MyProject
-tone: casual
-audience: developers
-twitter_handle: "@myhandle"
----
-```
-
-## Tools Used
-
-- `Bash` - For git operations
-- `Read` - For REPOLORE.md context
-- `Write` - For saving files to .repolore/
-
----
-
-## System Prompt
-
-You are RepoLore, writing X/Twitter posts for indie developers sharing what they've shipped.
-
-### Rules
-- Main tweet: max 280 characters, punchy hook
-- If the topic warrants it, suggest a 3-5 tweet thread
-- Sound like a developer sharing genuine progress, NOT a marketing bot
-- Use specific details ("fixed a race condition in the auth flow" > "made improvements")
-- Include one relevant emoji max (don't overdo it)
-
-### Output Format
+## Thread Format
 
 ```
-**Main Tweet:**
-[tweet text]
-
-**Thread (if applicable):**
-1/ [first tweet]
-2/ [second tweet]
-3/ [third tweet]
-...
+1/ [First post — the hook, stands alone]
+2/ [Context or the problem]
+3/ [What you built or how you solved it]
+4/ [Code snippet or technical detail]
+5/ [Takeaway or link]
 ```
 
-If the topic doesn't need a thread, just provide the main tweet.
+Each post must be under 280 characters and make sense on its own if someone only sees that one in their feed.
 
----
+## Platform Rules
 
-## Implementation
-
-When the user asks for a tweet:
-
-1. **Gather git history** using Bash:
-   ```bash
-   git log --oneline -n 5
-   ```
-
-2. **Get commit details**:
-   ```bash
-   git show --stat HEAD
-   ```
-
-3. **Check for REPOLORE.md** for tone and twitter_handle
-
-4. **Generate the tweet/thread** following the rules
-
-5. **Show character count** for each tweet
-
-6. **Ask user**:
-   - Copy to clipboard (they can do this manually)
-   - Save to file in `.repolore/x/`
-   - Regenerate with different angle
-
-7. **If saving to file**:
-   - Ensure `.repolore/x` directory exists and is gitignored:
-     ```bash
-     mkdir -p .repolore/x
-     echo ".repolore/" >> .gitignore 2>/dev/null || true
-     ```
-   - Generate unique ID for filename (timestamp-based: YYYMMDD-HHMMSS)
-   - Save to file using Write tool: `.repolore/x/repolore-x-{timestamp}.txt`
+- Specificity wins. Name the technology, the function, the metric.
+- No hashtag spam. One or two relevant hashtags maximum, only if they add discoverability.
+- No thread where a single post would do. Only suggest a thread if there's genuinely enough to say.
+- "Shipped X" or "Just pushed Y" is fine as a thread opener. "I'm thrilled to announce..." is not.

@@ -1,124 +1,85 @@
 ---
 name: repolore-init
-description: Use when initializing Repolore for a project, creating REPOLORE.md configuration, or setting up content generation context for git repositories
+description: Initialize Repolore for a project by creating REPOLORE.md configuration. Use when setting up Repolore for the first time, creating or updating REPOLORE.md, or changing project branding and tone settings.
+allowed-tools: Bash(git:*) Bash(ls:*) Bash(cat:*) Read create_file
 ---
 
 # Repolore Init
 
-Initialize Repolore by creating a `REPOLORE.md` configuration file that helps other Repolore skills generate better content from your git commits.
+Create a `REPOLORE.md` configuration file that other Repolore skills use to generate content that sounds like the project, not like an AI.
 
-## Overview
+## Why This Matters
 
-Repolore skills transform git history into blog posts, social media, changelogs, and newsletters. The `REPOLORE.md` file provides project context—tone, audience, key features—so generated content sounds like you, not generic AI output.
-
-**Core principle:** Context beats prompts. A well-configured REPOLORE.md means better content with less editing.
-
-## When to Use
-
-- Setting up Repolore for the first time on a project
-- Creating or updating `REPOLORE.md`
-- Adding Repolore to an existing repository
-- Changing project branding, tone, or target audience
-
-## Quick Reference
-
-| Task | Command |
-|------|---------|
-| Initialize Repolore | `Initialize repolore for this project` |
-| Update config | `Update my REPOLORE.md` |
-| Check config | `Read REPOLORE.md` |
+REPOLORE.md is the single source of truth for tone, audience, and voice. Without it, every content skill guesses. With it, content is consistent across blog posts, tweets, LinkedIn, newsletters, and everything else.
 
 ## Workflow
 
-```dot
-digraph init_flow {
-    "Start" [shape=box];
-    "Auto-detect project info" [shape=box];
-    "Ask targeted questions" [shape=box];
-    "Generate REPOLORE.md" [shape=box];
-    "Confirm/save" [shape=box];
+### 1. Auto-Detect Project Information
 
-    "Start" -> "Auto-detect project info";
-    "Auto-detect project info" -> "Ask targeted questions";
-    "Ask targeted questions" -> "Generate REPOLORE.md";
-    "Generate REPOLORE.md" -> "Confirm/save";
-}
+Gather what you can before asking questions:
+
+```bash
+# Project name from package files
+[ -f package.json ] && grep '"name"' package.json | head -1
+[ -f Cargo.toml ] && grep '^name' Cargo.toml | head -1
+[ -f pyproject.toml ] && grep '^name' pyproject.toml | head -1
+[ -f go.mod ] && head -1 go.mod
 ```
 
-## Implementation
-
-When the user asks to initialize Repolore:
-
-### 1. Auto-detect Project Information
-
-Use Bash and Read tools to gather:
-
-**Project name:**
 ```bash
-# Check common sources
-[ -f package.json ] && cat package.json | grep '"name"' | head -1
-[ -f Cargo.toml ] && cat Cargo.toml | grep '^name' | head -1
-[ -f pyproject.toml ] && cat pyproject.toml | grep '^name' | head -1
-```
-
-**Language/framework:**
-```bash
-# Detect from files
+# Language/framework detection
 ls package.json Cargo.toml pyproject.toml go.mod requirements.txt 2>/dev/null
 ```
 
-**Existing README:**
 ```bash
-cat README.md 2>/dev/null || cat readme.md 2>/dev/null || echo "No README found"
+# Existing README for context
+cat README.md 2>/dev/null | head -50
 ```
 
-**Git repository info:**
 ```bash
+# Git remote and recent history
 git remote -v 2>/dev/null | head -1
 git log --oneline -5 2>/dev/null
 ```
 
-### 2. Ask Targeted Questions
+### 2. Ask Only What's Missing
 
-Only ask for information not found in auto-detection:
+Do not ask for information you already detected. Only ask for:
 
-**Required (if not detected):**
+**Required** (if not detected):
 - Project name
-- Brief description (1-2 sentences about what it does)
-- Desired tone (provide options: technical_but_accessible, professional, casual, enthusiastic, authoritative)
-- Target audience (developers, end_users, technical_founders, open_source_maintainers, specific_niche)
-- 3-5 SEO pillars (key topics/themes for content)
+- What the project does (one to two sentences)
+- Tone — offer these options: `technical_but_accessible`, `professional`, `casual`, `enthusiastic`, `authoritative`
+- Target audience: developers, end users, technical founders, open source community, or something specific
+- Three to five SEO pillars (key topics for content)
 
-**Optional (always ask, can skip):**
+**Optional** (ask, but accept "skip"):
 - Twitter/X handle
 - dev.to tags
 - Newsletter author name
-- Key features (suggest based on code structure if possible)
-- Brand voice description (how you want to sound)
+- Brand voice description (how they want to sound — suggest they use a comparison like "like [X] but [Y]")
 
 ### 3. Generate REPOLORE.md
 
-Create file with proper YAML frontmatter and markdown sections:
-
 ```yaml
 ---
-project: [Detected/Provided Name]
+project: [Name]
 tone: [selected_tone]
 audience: [selected_audience]
 seo_pillars:
   - [pillar_1]
   - [pillar_2]
   - [pillar_3]
-twitter_handle: "[optional_handle]"
+twitter_handle: "[handle]"
 devto_tags:
   - [tag1]
   - [tag2]
-newsletter_from: "[optional_name]"
+newsletter_from: "[name]"
 ---
 
 # Project Context
 
-[Project description from user or README]
+[Description from user or README]
 
 # Key Features
 
@@ -128,77 +89,20 @@ newsletter_from: "[optional_name]"
 
 # Target Audience
 
-[Description of ideal reader/user]
+[Who reads this content and what they care about]
 
 # Brand Voice
 
-[How the project should sound]
+[How the project should sound — concrete, not abstract]
 ```
 
-### 4. Confirm and Save
+### 4. Present and Save
 
-1. Present the generated content to the user
-2. Ask for confirmation or edits
-3. Use Write tool to save to `REPOLORE.md`
-4. Confirm completion with file path
+Show the generated content. Wait for approval or edits. Save to `REPOLORE.md` in the repository root using `create_file`.
 
-## Example Output
+## Guidance for Brand Voice Section
 
-```yaml
----
-project: Repolore
-tone: technical_but_accessible
-audience: developers
-seo_pillars:
-  - agentic skills
-  - content generation
-  - developer productivity
-  - git workflows
-twitter_handle: "@repolore"
-devto_tags:
-  - javascript
-  - ai
-  - productivity
-newsletter_from: "Repolore Team"
----
+Push the user toward specificity. "Professional" means nothing. "Like the Stripe docs but less formal" means something. "A senior engineer explaining something to a junior — patient but not condescending" means something.
 
-# Project Context
-
-Repolore is a collection of agentic skills that transform git commits into blog posts,
-tweets, LinkedIn updates, changelogs, and more. It helps developers share their work
-without the content creation overhead.
-
-# Key Features
-
-- Multiple content formats (blog, X, LinkedIn, Reddit, changelog, dev.to, newsletter)
-- Git commit analysis for context-aware generation
-- REPOLORE.md configuration for consistent brand voice
-- Easy installation via curl command
-
-# Target Audience
-
-Indie developers, open source maintainers, and technical founders who want to
-share their work but struggle with content creation.
-
-# Brand Voice
-
-Technical but accessible. We explain complex topics simply without dumbing them
-down. Professional but not corporate. We sound like a smart colleague explaining
-something over coffee.
-```
-
-## Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| Skipping optional fields | Include them—empty fields don't hurt, missing context does |
-| Generic SEO pillars | Be specific: "react hooks" not "programming" |
-| Vague brand voice | Use concrete comparisons: "like X but Y" |
-| Too many features | Keep to 3-5 most important |
-
-## Tools Used
-
-- `Bash` - Detect project info from package files and git
-- `Read` - Extract content from existing README/package.json
-- `Write` - Save the generated REPOLORE.md
-- `AskUserQuestion` - Collect missing information
+Bad: "We want to sound professional and approachable."
+Good: "Technical but accessible. We explain complex topics simply without dumbing them down. We sound like a smart colleague explaining something over coffee, not a textbook."
