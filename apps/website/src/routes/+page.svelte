@@ -11,8 +11,8 @@
     visible = true;
   });
 
-  // Schema.org structured data
-  const websiteSchema = {
+  // Schema.org structured data - pre-serialized for use in HTML
+  const websiteSchema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "RepoLore",
@@ -23,9 +23,9 @@
       "target": "https://repolore.dev/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
-  };
+  });
 
-  const softwareSchema = {
+  const softwareSchema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "RepoLore",
@@ -55,9 +55,9 @@
       "@type": "Organization",
       "name": "ClavixDev"
     }
-  };
+  });
 
-  const orgSchema = {
+  const orgSchema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "ClavixDev",
@@ -66,7 +66,7 @@
     "sameAs": [
       "https://github.com/ClavixDev"
     ]
-  };
+  });
 
   // OpenGraph meta tags
   const ogTitle = "RepoLore - Open Source SEO Content Skills";
@@ -104,15 +104,9 @@
   <meta name="twitter:image" content={ogImage} />
 
   <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-    {JSON.stringify(websiteSchema)}
-  </script>
-  <script type="application/ld+json">
-    {JSON.stringify(softwareSchema)}
-  </script>
-  <script type="application/ld+json">
-    {JSON.stringify(orgSchema)}
-  </script>
+  {@html `<script type="application/ld+json">${websiteSchema}</script>`}
+  {@html `<script type="application/ld+json">${softwareSchema}</script>`}
+  {@html `<script type="application/ld+json">${orgSchema}</script>`}
 </svelte:head>
 
 <section class="min-h-screen flex items-center justify-center pt-32 relative overflow-hidden cyber-grid">
