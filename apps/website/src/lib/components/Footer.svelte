@@ -56,6 +56,17 @@
       <p class="text-sm text-fg-muted font-mono">
         © 2024 REPOLORE // ALL_RIGHTS_RESERVED
       </p>
+      <p class="text-xs text-fg-muted/80 font-mono">
+        Hopped together by
+        <a
+          href="https://loppety.com"
+          class="hover:text-neon-green transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Loppety
+        </a>
+      </p>
       <div class="text-xs font-mono text-fg-muted">
         <span class="text-neon-green">●</span> SYSTEM_ONLINE
       </div>
